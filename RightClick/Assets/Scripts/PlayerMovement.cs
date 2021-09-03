@@ -1,77 +1,79 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class PlayerMovement : MonoBehaviour
 {
     private Animator animator;
     Rigidbody2D rb;
-
+    NavMeshAgent agent;
     [SerializeField]
-    private float speed = 3f;
-
-    Vector2 movement;
-    float moveLimiter = 0.7f;
+    private float speed = 20f;
+    Vector3 movement;
     private Vector3 Facing = Vector3.right;
-    private float jumpTimeRemaining;
+    public Camera cam;
 
-
+    bool isMoving;
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        StartCoroutine(FadeIn());
+
+
+        agent = GetComponent<NavMeshAgent>();
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
+
     }
     void Update()
     {
-        //User input
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
+        if (Input.GetMouseButtonDown(0))
+        {
+            movement = cam.ScreenToWorldPoint(Input.mousePosition);
+            //MOVE AGENT
+
+            isMoving = agent.SetDestination(movement);
+            if (isMoving)
+            {
+                agent.SetDestination(movement);
+             
+            }
+        }
 
         animator.SetFloat("Horizontal", movement.x);
         animator.SetFloat("Vertical", movement.y);
-        animator.SetFloat("Speed", movement.sqrMagnitude);
+        animator.SetFloat("Speed", agent.velocity.magnitude);
         Turn();
 
-        AnimatorStateInfo state = animator.GetCurrentAnimatorStateInfo(0);
-        if (state.IsName("Walk"))
-        {
-        }
+
     }
     private void Turn()
     {
-        //x=-1 left //x=1 right
-        if (movement == Vector2.right && Facing == Vector3.left)
-        {
-            transform.localScale = new Vector3(1f, 1f, 1f);
-            Facing = Vector3.right;
-        }
-        else if (movement == Vector2.left && Facing == Vector3.right)
+        if (rb.position.x > agent.nextPosition.x)
         {
             transform.localScale = new Vector3(-1f, 1f, 1f);
             Facing = Vector3.left;
         }
+        else if (rb.position.x < agent.nextPosition.x)
+        {
+            transform.localScale = new Vector3(1f, 1f, 1f);
+            Facing = Vector3.right;
+        }
+        //x=-1 left //x=1 right
     }
     private void FixedUpdate()
     {
-        if (movement.x != 0 && movement.y != 0) // Check for diagonal movement
-        {
-            // limit movement speed diagonally, so you move at 70% speed
-            movement.x *= moveLimiter;
-            movement.y *= moveLimiter;
-        }
-        rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
+        //if (movement.x != 0 && movement.y != 0) // Check for diagonal movement
+        //{
+        //    // limit movement speed diagonally, so you move at 70% speed
+        //    movement.x *= moveLimiter;
+        //    movement.y *= moveLimiter;
+        //}
+        //agent.Move(moveDir);
+        //rb.velocity = new Vector2(moveDir.x * speed, moveDir.y * speed);
+        //rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
+
     }
-    IEnumerator FadeIn()
-    {
-        SpriteRenderer spriteRend = GetComponent<SpriteRenderer>();
-        for (float f = 0f; f <= 1f; f += 0.1f)
-        {
-            Color c = spriteRend.material.color;
-            c.a = f;
-            spriteRend.material.color = c;
-            yield return new WaitForSeconds(0.5f);
-        }
-        //corutine= function that can go to sleep and then resume 
-    }
+
 }
