@@ -11,7 +11,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float speed = 20f;
     Vector3 movement;
-    private Vector3 Facing = Vector3.right;
     public Camera cam;
 
     bool isMoving;
@@ -50,30 +49,15 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Turn()
     {
+        //x=-1 left //x=1 right
         if (rb.position.x > agent.nextPosition.x)
         {
             transform.localScale = new Vector3(-1f, 1f, 1f);
-            Facing = Vector3.left;
         }
         else if (rb.position.x < agent.nextPosition.x)
         {
             transform.localScale = new Vector3(1f, 1f, 1f);
-            Facing = Vector3.right;
         }
-        //x=-1 left //x=1 right
-    }
-    private void FixedUpdate()
-    {
-        //if (movement.x != 0 && movement.y != 0) // Check for diagonal movement
-        //{
-        //    // limit movement speed diagonally, so you move at 70% speed
-        //    movement.x *= moveLimiter;
-        //    movement.y *= moveLimiter;
-        //}
-        //agent.Move(moveDir);
-        //rb.velocity = new Vector2(moveDir.x * speed, moveDir.y * speed);
-        //rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
-
     }
 
 }
