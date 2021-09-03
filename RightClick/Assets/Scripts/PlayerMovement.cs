@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField]
-    private float speed = 3f;
-    [SerializeField]
-    private Rigidbody2D rigidBody;
-
-    Vector2 movement;
-
-    private float jumpTimeRemaining;
-    private Vector3 Facing = Vector3.right;
     private Animator animator;
     Rigidbody2D rb;
+
+    [SerializeField]
+    private float speed = 3f;
+
+    Vector2 movement;
+    float moveLimiter = 0.7f;
+    private Vector3 Facing = Vector3.right;
+    private float jumpTimeRemaining;
+
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -26,23 +27,15 @@ public class PlayerMovement : MonoBehaviour
         //User input
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
-       
+
         animator.SetFloat("Horizontal", movement.x);
         animator.SetFloat("Vertical", movement.y);
-
-        if (Input.GetButtonDown("Jump") && animator.GetBool("grounded"))
-        {
-           // StartCoroutine(Jump());
-        }
-
-
         animator.SetFloat("Speed", movement.sqrMagnitude);
         Turn();
+
         AnimatorStateInfo state = animator.GetCurrentAnimatorStateInfo(0);
         if (state.IsName("Walk"))
         {
-            //Debug.Log("Walking");
-
         }
     }
     private void Turn()
@@ -50,23 +43,24 @@ public class PlayerMovement : MonoBehaviour
         //x=-1 left //x=1 right
         if (movement == Vector2.right && Facing == Vector3.left)
         {
-            Debug.Log("Facing x:" + Facing.x + " y:" + Facing.y);
-
             transform.localScale = new Vector3(1f, 1f, 1f);
             Facing = Vector3.right;
         }
         else if (movement == Vector2.left && Facing == Vector3.right)
         {
-            Debug.Log("Facing x:" + Facing.x + " y:" + Facing.y);
-
             transform.localScale = new Vector3(-1f, 1f, 1f);
             Facing = Vector3.left;
         }
     }
     private void FixedUpdate()
     {
-        //Movement
-        rigidBody.MovePosition(rigidBody.position + movement * speed* Time.fixedDeltaTime);
+        if (movement.x != 0 && movement.y != 0) // Check for diagonal movement
+        {
+            // limit movement speed diagonally, so you move at 70% speed
+            movement.x *= moveLimiter;
+            movement.y *= moveLimiter;
+        }
+        rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
     }
     IEnumerator FadeIn()
     {
