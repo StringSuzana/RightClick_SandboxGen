@@ -8,4 +8,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/GardenScene.unity
+    guid: a517e0719613abd458a46e3065d390be
+  - enabled: 1
+    path: Assets/Scenes/LoginScene.unity
+    guid: 6ae3e87567cffdf4d91724149968d358
+  - enabled: 1
+    path: Assets/Scenes/StartPageScene.unity
+    guid: 816ba57a1b1294448a586caa6def7794
   m_configObjects: {}

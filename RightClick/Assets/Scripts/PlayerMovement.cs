@@ -2,20 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-
-public class PlayerMovement : MonoBehaviour
+public interface IPlayer
 {
+  void OpenDoors(IEnterable doorsToAnotherWorld);
+}
+public class PlayerMovement : MonoBehaviour, IPlayer
+{
+    private string PlayerName = "Suzy";
     private Animator animator;
     Rigidbody2D rb;
     NavMeshAgent agent;
     [SerializeField]
     private float speed = 20f;
     Vector3 movement;
-    public Camera cam;
+    private new Camera camera;
 
     bool isMoving;
     private void Start()
     {
+        camera = Camera.main;
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
 
@@ -29,14 +34,14 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            movement = cam.ScreenToWorldPoint(Input.mousePosition);
+            movement = camera.ScreenToWorldPoint(Input.mousePosition);
             //MOVE AGENT
 
             isMoving = agent.SetDestination(movement);
             if (isMoving)
             {
                 agent.SetDestination(movement);
-             
+
             }
         }
 
@@ -60,4 +65,20 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+
+    //private void OpenDoors(IEnterable doorsToAnotherWorld)
+    //{
+    //    Debug.Log("Player=> OpenDoors");
+    //    //check some stuff
+    //    doorsToAnotherWorld.Enter(this.PlayerName);
+    //    //Player has encounter some enterable doors trigger
+    //}
+
+    public void OpenDoors(IEnterable doorsToAnotherWorld)
+    {
+        Debug.Log("Player=> OpenDoors");
+        //check some stuff
+        doorsToAnotherWorld.Enter(this.PlayerName);
+        //Player has encounter some enterable doors trigger
+    }
 }
