@@ -5,18 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class LoginMenu : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     public void LogIn()
     {
         Debug.Log("start game");
@@ -31,4 +19,5 @@ public struct SceneNames
     public static string start = "StartPageScene";
     public static string settings = "Settings";
     public static string menu = "Menu";
+    public static string mathQuiz = "MathScene";
 }

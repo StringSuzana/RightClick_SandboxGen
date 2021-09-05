@@ -65,15 +65,6 @@ public class PlayerMovement : MonoBehaviour, IPlayer
         }
     }
 
-
-    //private void OpenDoors(IEnterable doorsToAnotherWorld)
-    //{
-    //    Debug.Log("Player=> OpenDoors");
-    //    //check some stuff
-    //    doorsToAnotherWorld.Enter(this.PlayerName);
-    //    //Player has encounter some enterable doors trigger
-    //}
-
     public void OpenDoors(IEnterable doorsToAnotherWorld)
     {
         Debug.Log("Player=> OpenDoors");

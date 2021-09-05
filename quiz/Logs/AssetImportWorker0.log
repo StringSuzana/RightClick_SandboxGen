@@ -1,0 +1,443 @@
+Using pre-set license
+Built from '2020.3/staging' branch; Version is '2020.3.17f1 (a4537701e4ab) revision 10769271'; Using compiler version '192528614'; Build Type 'Release'
+OS: 'Windows 10 Pro; OS build 19042.1165; Version 2009; 64bit' Language: 'en' Physical Memory: 16253 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\2020.3.17f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker0
+-projectPath
+C:/Users/Suz/UnityProjects/RightClick_SandboxGen/quiz
+-logFile
+Logs/AssetImportWorker0.log
+-srvPort
+55827
+Successfully changed project path to: C:/Users/Suz/UnityProjects/RightClick_SandboxGen/quiz
+C:/Users/Suz/UnityProjects/RightClick_SandboxGen/quiz
+Using Asset Import Pipeline V2.
+Refreshing native plugins compatible for Editor in 64.51 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2020.3.17f1 (a4537701e4ab)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.3.17f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/Suz/UnityProjects/RightClick_SandboxGen/quiz/Assets
+GfxDevice: creating device client; threaded=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce GTX 1650 Ti (ID=0x1f95)
+    Vendor:   
+    VRAM:     3962 MB
+    Driver:   27.21.14.6172
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020.3.17f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020.3.17f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020.3.17f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56976
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.3.17f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.002702 seconds.
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 64.27 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.716 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1716ms)
+		BeginReloadAssembly (113ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (0ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (1ms)
+		EndReloadAssembly (656ms)
+			LoadAssemblies (110ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (221ms)
+			ReleaseScriptCaches (0ms)
+			RebuildScriptCaches (47ms)
+			SetupLoadedEditorAssemblies (258ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (6ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (64ms)
+				BeforeProcessingInitializeOnLoad (24ms)
+				ProcessInitializeOnLoadAttributes (124ms)
+				ProcessInitializeOnLoadMethodAttributes (40ms)
+				AfterProcessingInitializeOnLoad (0ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (0ms)
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.010445 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 63.60 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.831 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1832ms)
+		BeginReloadAssembly (218ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (6ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (38ms)
+		EndReloadAssembly (1497ms)
+			LoadAssemblies (130ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (429ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (71ms)
+			SetupLoadedEditorAssemblies (666ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (6ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (64ms)
+				BeforeProcessingInitializeOnLoad (150ms)
+				ProcessInitializeOnLoadAttributes (418ms)
+				ProcessInitializeOnLoadMethodAttributes (19ms)
+				AfterProcessingInitializeOnLoad (8ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (9ms)
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.10 seconds
+Refreshing native plugins compatible for Editor in 0.90 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2117 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 93.9 MB.
+System memory in use after: 93.9 MB.
+
+Unloading 28 unused Assets to reduce memory usage. Loaded Objects now: 2556.
+Total: 7.803900 ms (FindLiveObjects: 0.356800 ms CreateObjectMapping: 0.167500 ms MarkObjects: 7.140600 ms  DeleteObjects: 0.136600 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  path: Assets/Puppeteer/TriviaQuizGame/CS_Assets
+  artifactKey: Guid(30fb270ff4cdbe64d82384c5a08f41a9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Puppeteer/TriviaQuizGame/CS_Assets using Guid(30fb270ff4cdbe64d82384c5a08f41a9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6281d34168cbdcdf7c08451c60f82c05') in 0.009721 seconds 
+  Import took 0.016741 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000671 seconds.
+  path: Assets/Scenes
+  artifactKey: Guid(b19887b124aa2f5448ec4170c926cec7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes using Guid(b19887b124aa2f5448ec4170c926cec7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '65dcabe471a203bca2784ee22383ef69') in 0.004171 seconds 
+  Import took 0.010856 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000669 seconds.
+  path: Assets/Puppeteer
+  artifactKey: Guid(4a630907ac2c9044488e8a05f7b1fd47) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Puppeteer using Guid(4a630907ac2c9044488e8a05f7b1fd47) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1ebeefbf10baf3a0104c184a5461e89a') in 0.009992 seconds 
+  Import took 0.016775 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000602 seconds.
+  path: Assets/Puppeteer/TriviaQuizGame
+  artifactKey: Guid(243d09c8adac6b74d84c2c61d4819818) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Puppeteer/TriviaQuizGame using Guid(243d09c8adac6b74d84c2c61d4819818) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b79bc1916bd9c7bdb6b2f1405f757daa') in 0.002241 seconds 
+  Import took 0.005940 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 6.591770 seconds.
+  path: Assets/Puppeteer/TriviaQuizGame/Resources
+  artifactKey: Guid(c8ca23667d1241f42b7e793d2009d685) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Puppeteer/TriviaQuizGame/Resources using Guid(c8ca23667d1241f42b7e793d2009d685) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '820cb4992deed1f152b1f028a0bdbe4e') in 0.003898 seconds 
+  Import took 0.009493 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.002977 seconds.
+  path: Assets/Puppeteer/TriviaQuizGame/Resources
+  artifactKey: Guid(c8ca23667d1241f42b7e793d2009d685) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Puppeteer/TriviaQuizGame/Resources using Guid(c8ca23667d1241f42b7e793d2009d685) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '820cb4992deed1f152b1f028a0bdbe4e') in 0.005213 seconds 
+  Import took 0.013065 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 6.453119 seconds.
+  path: Assets/Puppeteer/TriviaQuizGame/Animations
+  artifactKey: Guid(3720f061a4dd9204f9769468dceba192) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Puppeteer/TriviaQuizGame/Animations using Guid(3720f061a4dd9204f9769468dceba192) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b9c3ada33ef7d432ab3c900479df4b7c') in 0.003211 seconds 
+  Import took 0.008271 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.004732 seconds.
+  path: Assets/Puppeteer/TriviaQuizGame/Animations
+  artifactKey: Guid(3720f061a4dd9204f9769468dceba192) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Puppeteer/TriviaQuizGame/Animations using Guid(3720f061a4dd9204f9769468dceba192) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b9c3ada33ef7d432ab3c900479df4b7c') in 0.004722 seconds 
+  Import took 0.012154 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.578516 seconds.
+  path: Assets/Puppeteer/TriviaQuizGame/CS_Assets/CS_Prefabs
+  artifactKey: Guid(c909c3e666eb2e241a6f6c31278b8950) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Puppeteer/TriviaQuizGame/CS_Assets/CS_Prefabs using Guid(c909c3e666eb2e241a6f6c31278b8950) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '96060979859e01b1067caec6ef5db44e') in 0.008350 seconds 
+  Import took 0.013131 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.001045 seconds.
+  path: Assets/Puppeteer/TriviaQuizGame/CS_Assets/CS_Prefabs
+  artifactKey: Guid(c909c3e666eb2e241a6f6c31278b8950) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Puppeteer/TriviaQuizGame/CS_Assets/CS_Prefabs using Guid(c909c3e666eb2e241a6f6c31278b8950) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '96060979859e01b1067caec6ef5db44e') in 0.002980 seconds 
+  Import took 0.007229 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.104237 seconds.
+  path: Assets/Puppeteer/TriviaQuizGame/CS_Assets/CS_Scenes
+  artifactKey: Guid(749ee8e042331fb4499441fdb1b46f7a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Puppeteer/TriviaQuizGame/CS_Assets/CS_Scenes using Guid(749ee8e042331fb4499441fdb1b46f7a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c936824e141d0b8283b796662ffd81d2') in 0.003108 seconds 
+  Import took 0.008206 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.005699 seconds.
+  path: Assets/Puppeteer/TriviaQuizGame/CS_Assets/CS_Scenes
+  artifactKey: Guid(749ee8e042331fb4499441fdb1b46f7a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Puppeteer/TriviaQuizGame/CS_Assets/CS_Scenes using Guid(749ee8e042331fb4499441fdb1b46f7a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c936824e141d0b8283b796662ffd81d2') in 0.002470 seconds 
+  Import took 0.006562 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.057891 seconds.
+  path: Assets/Puppeteer/TriviaQuizGame/CS_Assets/CS_Scenes/CS_Game.unity
+  artifactKey: Guid(a7f87d8fd79c938428f36b3bd2bfe8e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Puppeteer/TriviaQuizGame/CS_Assets/CS_Scenes/CS_Game.unity using Guid(a7f87d8fd79c938428f36b3bd2bfe8e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0e00def3af6348e28bef1708084d91cf') in 0.018947 seconds 
+  Import took 0.025972 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.520117 seconds.
+  path: Assets/Puppeteer/TriviaQuizGame/CS_Assets/CS_Scenes/CS_GameCategoryChallenge.unity
+  artifactKey: Guid(1b41a099bda31cd49935abcb9bfed80d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Puppeteer/TriviaQuizGame/CS_Assets/CS_Scenes/CS_GameCategoryChallenge.unity using Guid(1b41a099bda31cd49935abcb9bfed80d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bf1dcb65d9ea3aa80682a60a1ac3ffe3') in 0.003833 seconds 
+  Import took 0.008195 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.006058 seconds.
+  path: Assets/Puppeteer/TriviaQuizGame/CS_Assets/CS_Scenes/CS_GameCategoryChallenge.unity
+  artifactKey: Guid(1b41a099bda31cd49935abcb9bfed80d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Puppeteer/TriviaQuizGame/CS_Assets/CS_Scenes/CS_GameCategoryChallenge.unity using Guid(1b41a099bda31cd49935abcb9bfed80d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bf1dcb65d9ea3aa80682a60a1ac3ffe3') in 0.003449 seconds 
+  Import took 0.008116 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 229.298599 seconds.
+  path: Assets/Puppeteer/TriviaQuizGame/CS_Assets/CS_Scenes/CS_GameOnlineImages.unity
+  artifactKey: Guid(7b18a03162b31814891f2a418a60b22d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Puppeteer/TriviaQuizGame/CS_Assets/CS_Scenes/CS_GameOnlineImages.unity using Guid(7b18a03162b31814891f2a418a60b22d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '76616c5bbe8993ded7b6a973197578bd') in 0.009346 seconds 
+  Import took 0.015371 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.012884 seconds.
+  path: Assets/Puppeteer/TriviaQuizGame/CS_Assets/CS_Scenes/CS_GameOnlineImages.unity
+  artifactKey: Guid(7b18a03162b31814891f2a418a60b22d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Puppeteer/TriviaQuizGame/CS_Assets/CS_Scenes/CS_GameOnlineImages.unity using Guid(7b18a03162b31814891f2a418a60b22d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '76616c5bbe8993ded7b6a973197578bd') in 0.005901 seconds 
+  Import took 0.013813 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 17.020289 seconds.
+  path: Assets/Puppeteer/TriviaQuizGame/CS_Assets/CS_Scenes/CS_GameTrueFalse.unity
+  artifactKey: Guid(26abfff727f13a741a8b6b1630c1199f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Puppeteer/TriviaQuizGame/CS_Assets/CS_Scenes/CS_GameTrueFalse.unity using Guid(26abfff727f13a741a8b6b1630c1199f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '05ba7c7fa58ade1a38bb43be3e5beda4') in 0.003106 seconds 
+  Import took 0.007769 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.991827 seconds.
+  path: Assets/Puppeteer/TriviaQuizGame/CS_Assets/CS_Scenes/CS_StartMenu.unity
+  artifactKey: Guid(a87944e446bc92647946a239356ce692) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Puppeteer/TriviaQuizGame/CS_Assets/CS_Scenes/CS_StartMenu.unity using Guid(a87944e446bc92647946a239356ce692) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ae9717fa09e3443f80cfa53c73603a90') in 0.003445 seconds 
+  Import took 0.008692 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.782669 seconds.
+  path: Assets/Puppeteer/TriviaQuizGame/CS_Assets/CS_Scenes/CS_GamePortrait.unity
+  artifactKey: Guid(4e820d1c6e133e34f86556691b3b0e9e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Puppeteer/TriviaQuizGame/CS_Assets/CS_Scenes/CS_GamePortrait.unity using Guid(4e820d1c6e133e34f86556691b3b0e9e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cbabf510e47ec5951019167474831baf') in 0.003056 seconds 
+  Import took 0.007176 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.910161 seconds.
+  path: Assets/Puppeteer/TriviaQuizGame/CS_Assets/CS_Scenes/CS_GameOnlineXML.unity
+  artifactKey: Guid(31d751fd6469e974ab59f99c0efc2f24) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Puppeteer/TriviaQuizGame/CS_Assets/CS_Scenes/CS_GameOnlineXML.unity using Guid(31d751fd6469e974ab59f99c0efc2f24) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '89e4328853b228b921c4d97caf37f5de') in 0.003079 seconds 
+  Import took 0.007258 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 21.792489 seconds.
+  path: Assets/Puppeteer/TriviaQuizGame/CS_Assets/CS_Scenes/CS_GameMultiChoice.unity
+  artifactKey: Guid(ee0bb7a458957a242af09b01c1b45f1d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Puppeteer/TriviaQuizGame/CS_Assets/CS_Scenes/CS_GameMultiChoice.unity using Guid(ee0bb7a458957a242af09b01c1b45f1d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '689e7ba49fd730c0b7e871bbae701c1c') in 0.003062 seconds 
+  Import took 0.008285 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 26.664708 seconds.
+  path: Assets/Puppeteer/TriviaQuizGame/CS_Assets/CS_Scenes/CS_GameMath.unity
+  artifactKey: Guid(72feadb9e1aa43446a31ce0a9fa2e1eb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Puppeteer/TriviaQuizGame/CS_Assets/CS_Scenes/CS_GameMath.unity using Guid(72feadb9e1aa43446a31ce0a9fa2e1eb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '59bf78772e8fa69ca66ebe97da33a4f4') in 0.003011 seconds 
+  Import took 0.008970 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 5.977375 seconds.
+  path: Assets/Puppeteer/TriviaQuizGame/CS_Assets/CS_Scenes/CS_GameLocalXML.unity
+  artifactKey: Guid(5e43e82cf3324af4fa2b25f3b2f2fd93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Puppeteer/TriviaQuizGame/CS_Assets/CS_Scenes/CS_GameLocalXML.unity using Guid(5e43e82cf3324af4fa2b25f3b2f2fd93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5f832e2a50a52d17850bd56358d6a68f') in 0.005270 seconds 
+  Import took 0.012204 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 10.974805 seconds.
+  path: Assets/Puppeteer/TriviaQuizGame/CS_Assets/CS_Scenes/CS_GameImageAnswers.unity
+  artifactKey: Guid(d018a8a95f88e21458b6ffa8f34caa52) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Puppeteer/TriviaQuizGame/CS_Assets/CS_Scenes/CS_GameImageAnswers.unity using Guid(d018a8a95f88e21458b6ffa8f34caa52) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6d6817647f713ab5fc32d56fbe3c210e') in 0.003247 seconds 
+  Import took 0.008477 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.957880 seconds.
+  path: Assets/Puppeteer/TriviaQuizGame/CS_Assets/CS_Scenes/CS_GameHotseat.unity
+  artifactKey: Guid(93b6f8cf3858e7e4e83f3a630ef2c875) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Puppeteer/TriviaQuizGame/CS_Assets/CS_Scenes/CS_GameHotseat.unity using Guid(93b6f8cf3858e7e4e83f3a630ef2c875) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cc2ef06cc0bd11969b57aee3407b096a') in 0.004870 seconds 
+  Import took 0.011947 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.153297 seconds.
+  path: Assets/Puppeteer/TriviaQuizGame/CS_Assets/CS_Scenes/CS_GameCloseup.unity
+  artifactKey: Guid(6edb4334a6e36764dbcd4809993df753) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Puppeteer/TriviaQuizGame/CS_Assets/CS_Scenes/CS_GameCloseup.unity using Guid(6edb4334a6e36764dbcd4809993df753) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '39deddb30d2f5cfa92ab44da75867207') in 0.005010 seconds 
+  Import took 0.012240 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.921499 seconds.
+  path: Assets/Puppeteer/TriviaQuizGame/CS_Assets/CS_Scenes/CS_GameCategoryGrid.unity
+  artifactKey: Guid(597f20c6a30342a4ab16090bd2931389) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Puppeteer/TriviaQuizGame/CS_Assets/CS_Scenes/CS_GameCategoryGrid.unity using Guid(597f20c6a30342a4ab16090bd2931389) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7c8f4c03926b5e288eccdef188b6caa8') in 0.004908 seconds 
+  Import took 0.011639 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.005558 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.63 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.632 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1633ms)
+		BeginReloadAssembly (206ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (8ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (66ms)
+		EndReloadAssembly (1324ms)
+			LoadAssemblies (140ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (404ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (88ms)
+			SetupLoadedEditorAssemblies (553ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (7ms)
+				SetLoadedEditorAssemblies (1ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (115ms)
+				ProcessInitializeOnLoadAttributes (413ms)
+				ProcessInitializeOnLoadMethodAttributes (8ms)
+				AfterProcessingInitializeOnLoad (8ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (15ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.62 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2107 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 93.3 MB.
+System memory in use after: 93.5 MB.
+
+Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 2559.
+Total: 7.353000 ms (FindLiveObjects: 0.279300 ms CreateObjectMapping: 0.084500 ms MarkObjects: 6.932900 ms  DeleteObjects: 0.054200 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 164.915187 seconds.
+  path: Assets/Puppeteer/TriviaQuizGame/CS_Assets/CS_Scripts
+  artifactKey: Guid(9a0add29c95907f4baec4e4aa5fbbb90) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Puppeteer/TriviaQuizGame/CS_Assets/CS_Scripts using Guid(9a0add29c95907f4baec4e4aa5fbbb90) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '25f131472f0c7c43ad4ab6b21365b9d3') in 0.011892 seconds 
+  Import took 0.016312 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.014661 seconds.
+  path: Assets/Puppeteer/TriviaQuizGame/CS_Assets/CS_Scripts
+  artifactKey: Guid(9a0add29c95907f4baec4e4aa5fbbb90) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Puppeteer/TriviaQuizGame/CS_Assets/CS_Scripts using Guid(9a0add29c95907f4baec4e4aa5fbbb90) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '25f131472f0c7c43ad4ab6b21365b9d3') in 0.004216 seconds 
+  Import took 0.011178 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.662099 seconds.
+  path: Assets/Puppeteer/TriviaQuizGame/CS_Assets/CS_Scripts/Types
+  artifactKey: Guid(a2ced7e2b020c1744ae4d06b45c45350) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Puppeteer/TriviaQuizGame/CS_Assets/CS_Scripts/Types using Guid(a2ced7e2b020c1744ae4d06b45c45350) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '751ab3720f49ceb36dc2c62eea59242a') in 0.004649 seconds 
+  Import took 0.011499 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.706640 seconds.
+  path: Assets/Puppeteer/TriviaQuizGame/CS_Assets/CS_Scripts/Types/Answer.cs
+  artifactKey: Guid(22ee0258a9514ac42b861d4e05a6c55e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Puppeteer/TriviaQuizGame/CS_Assets/CS_Scripts/Types/Answer.cs using Guid(22ee0258a9514ac42b861d4e05a6c55e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'de517ad07b30787ac94f4522e868b086') in 0.064962 seconds 
+  Import took 0.070428 seconds .
+
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file

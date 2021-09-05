@@ -1,0 +1,5 @@
+sceneSetups:
+- path: Assets/Puppeteer/TriviaQuizGame/CS_Assets/CS_Scenes/CS_GameMath.unity
+  isLoaded: 1
+  isActive: 1
+  isSubScene: 0

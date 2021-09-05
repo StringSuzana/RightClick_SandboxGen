@@ -9,25 +9,12 @@ public interface IEnterable
 }
 public class DoorsToAnotherWorld : MonoBehaviour, IEnterable
 {
-    public Canvas InGameMenu;
-    public bool isMenuVisible = false;
-    void Start()
-    {
-        //InGameMenu = GetComponent<Canvas>();
-        InGameMenu.enabled = false;
-    }
+    public Canvas QuizMenu;
 
-    // Update is called once per frame
-    void Update()
-    {
-  
-    }
     public void Enter(string playerName)
     {
         Debug.Log("Player: " + playerName + " wants to enter the door.");
-        //SceneManager.LoadScene(SceneNames.start);
-        InGameMenu.enabled = true;
-        //InGameMenu.gameObject.SetActive(true);
+        QuizMenu.enabled = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -40,4 +27,5 @@ public class DoorsToAnotherWorld : MonoBehaviour, IEnterable
             playerObject.OpenDoors(this);
         }
     }
+
 }
