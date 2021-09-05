@@ -25,4 +25,5 @@ public class GameUIManager : MonoBehaviour
 public struct CanvasNames
 {
     public static string exitMenu = "ExitMenu";
+    public static string quizMenu = "QuizMenu";
 }

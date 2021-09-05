@@ -6,7 +6,10 @@ using UnityEngine.SceneManagement;
 public class GamesLoader : MonoBehaviour
 {
     public Canvas QuizMenu;
-
+    private void Start()
+    {
+        QuizMenu.enabled = false;
+    }
     public void EnterMathQuiz()
     {
         SceneManager.LoadScene(SceneNames.mathQuiz);

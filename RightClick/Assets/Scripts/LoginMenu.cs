@@ -19,5 +19,5 @@ public struct SceneNames
     public static string start = "StartPageScene";
     public static string settings = "Settings";
     public static string menu = "Menu";
-    public static string mathQuiz = "MathScene";
+    public static string mathQuiz = "MathQuizScene";
 }
