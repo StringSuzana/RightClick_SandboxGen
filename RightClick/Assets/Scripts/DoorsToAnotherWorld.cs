@@ -20,19 +20,14 @@ public class DoorsToAnotherWorld : MonoBehaviour, IEnterable
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            //Escape menu!!!
-            InGameMenu.enabled = !InGameMenu.enabled;
-            isMenuVisible = InGameMenu.enabled;
-        }
+  
     }
     public void Enter(string playerName)
     {
         Debug.Log("Player: " + playerName + " wants to enter the door.");
         //SceneManager.LoadScene(SceneNames.start);
         InGameMenu.enabled = true;
-        InGameMenu.gameObject.SetActive(true);
+        //InGameMenu.gameObject.SetActive(true);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

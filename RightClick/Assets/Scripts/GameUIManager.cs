@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class GameUIManager : MonoBehaviour
 {
-    public Canvas InGameMenu;
+    private Canvas ExitMenu;
     public bool isMenuVisible = false;
     void Start()
     {
-        InGameMenu = GetComponent<Canvas>();
-        InGameMenu.enabled = false;
+        ExitMenu = GameObject.FindGameObjectWithTag(CanvasNames.exitMenu).GetComponent<Canvas>();
+        ExitMenu.enabled = false;
     }
 
     // Update is called once per frame
@@ -17,8 +17,12 @@ public class GameUIManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            InGameMenu.enabled = !InGameMenu.enabled;
-            isMenuVisible = InGameMenu.enabled;
+            ExitMenu.enabled = !ExitMenu.enabled;
+            isMenuVisible = ExitMenu.enabled;
         }
     }
+}
+public struct CanvasNames
+{
+    public static string exitMenu = "ExitMenu";
 }
