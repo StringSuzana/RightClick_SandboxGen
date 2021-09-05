@@ -18,12 +18,14 @@ public class ExtraPointsBar : MonoBehaviour
 
     private void Display()
     {
-        imageExtraPoints.value = extraPoints;
+        PlayerData.sharedInstance.SetExtraPoints(extraPoints); //do this after finishing quiz !
+        imageExtraPoints.value = PlayerData.sharedInstance.extraPoints;
     }
 
     public void CompletedQuest(float numberOfPoints)
     {
         //increase extraPoints
+        PlayerData.sharedInstance.AddExtraPoints(numberOfPoints);
         extraPoints += numberOfPoints;
         if (numberOfPoints >= fullPoints)
         {
