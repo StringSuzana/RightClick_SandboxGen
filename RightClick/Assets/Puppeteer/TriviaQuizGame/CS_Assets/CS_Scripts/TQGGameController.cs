@@ -1476,21 +1476,11 @@ namespace TriviaQuizGame
             {
                 victoryCanvas.gameObject.SetActive(true);
 
-
-                victoryCanvas.Find("BG/CompletePanel/ScoreText/SoreNumbers").GetComponent<Text>().text += " " + players[currentPlayer].score.ToString();
+                victoryCanvas.Find("BG/CompletePanel/ScoreText/SoreNumbers").GetComponent<Text>().text = players[currentPlayer].score.ToString();
 
                 //TODO
-                PlayerPrefs.SetFloat(SceneManager.GetActiveScene().name + "MathQuiz", players[currentPlayer].score);
-
-
-
-
-                // If we have a TextProgress object, then we can display how many questions we answered correctly
-                if (victoryCanvas.Find("ScoreTexts/TextProgress"))
-                {
-                    //Write the progress text
-                    victoryCanvas.Find("ScoreTexts/TextProgress").GetComponent<Text>().text = correctAnswers.ToString() + "/" + questionLimit.ToString();
-                }
+                PlayerPrefs.SetFloat(SceneManager.GetActiveScene().name + "_MathQuiz", players[currentPlayer].score);
+                Debug.Log(PlayerPrefs.GetFloat(SceneManager.GetActiveScene().name + "_MathQuiz"));
 
                 //If there is a source and a sound, play it from the source
                 if (soundSource && soundVictory) soundSource.GetComponent<AudioSource>().PlayOneShot(soundVictory);

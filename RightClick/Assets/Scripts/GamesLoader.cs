@@ -30,7 +30,7 @@ public class GamesLoader : MonoBehaviour
         Time.timeScale = 1f;
 
         //TODO
-        //Move away from the collision area
+        //Move player away from the collision area
         //disable moving character on button clicks
     }
 }

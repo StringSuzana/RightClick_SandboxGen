@@ -16,7 +16,7 @@ filters = {
 	settings = true
 }
 scopes = {
-	"last_search.AB59B443" = "record"
+	"last_search.AB59B443" = "preference"
 }
 providers = {
 	asset = {
