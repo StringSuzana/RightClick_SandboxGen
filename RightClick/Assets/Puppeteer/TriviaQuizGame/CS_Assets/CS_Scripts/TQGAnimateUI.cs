@@ -1,6 +1,4 @@
-﻿//Version 1.65 (10.08.2016)
-
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 public class TQGAnimateUI:MonoBehaviour
@@ -29,23 +27,16 @@ public class TQGAnimateUI:MonoBehaviour
 	[Tooltip("Should the animation be played immediately when the UI element is enabled?")]
 	public bool playOnEnabled = true;
 	
-	// Use this for initialization
 	void Awake()
 	{
-		// Register the current time
 		previousTime = currentTime = Time.realtimeSinceStartup;
-		
-		// Register the animation component for quicker access
 		animationObject = GetComponent<Animation>();
 	}
 	
-	// Update is called once per frame
 	void Update()
 	{
-		// We are animating
 		if ( introAnimation && isAnimating == true )
 		{
-
 			// Get the current real time, regardless of time scale
 			currentTime = Time.realtimeSinceStartup;
 			
@@ -97,13 +88,10 @@ public class TQGAnimateUI:MonoBehaviour
 		{
 			// Reset the animation time
 			animationTime = 0;
-		
-			// Register the current time
 			previousTime = currentTime = Time.realtimeSinceStartup;
-		
+
 			// Start animating
 			isAnimating = true;
-
 			animationObject.Play();
 		}
 	}

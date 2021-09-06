@@ -10,15 +10,7 @@ namespace TriviaQuizGame
 	[Serializable]
 	public class CategoryMath:MonoBehaviour
 	{
-		[Tooltip("The name of the category. This is displayed in a categroy wheel or list")]
-		public string categoryName;
 		
-		[Tooltip("The icon associated with this category. This is displayed in a category wheel or list")]
-		public Sprite categoryIcon;
-
-		[Tooltip("The color associated with this category. This is displayed in a category wheel or list")]
-		public Color categoryColor = Color.red;
-
 		[Tooltip("How many levels will be created, each level has several questions with attributes such as Numbers Range, types of Operations, number of Operations, the bonus we get in the level, etc")]
 		[Range(1,20)]
 		public int totalLevels = 10;
@@ -64,23 +56,7 @@ namespace TriviaQuizGame
 		[Tooltip("At which level should we start using division operations")]
 		public int useDivisionAtLevel = 30;
 
-// THESE WILL BE USED IN A FUTURE UPDATE
-		//[Header("Which parts of the equation can be missing")]
-		//[Tooltip("Should questions possibly have a missing answer?")]
-		//public bool missingResult = true;
-
-		//[Tooltip("Should questions possibly have a missing operation?")]
-		//public bool missingOperation = false;
-
-		//[Tooltip("Should questions possibly have a missing operand? ")]
-		//public bool missingOperand = false;
-
-		//[Header("Every how many levels should we increase the number of operations?")]
-		//[Tooltip("After how many levels should we increase the number of operations by one? We start with one operation (ex: 2 + 3), and then after a certain level increase it to two operations (ex: 2 + 3 - 1), and so on every set number of levels")]
-		//public int addOperationAtLevel = 40;
-
-		// The number of operations in this question
-		internal float operationsCount = 1;
+	internal float operationsCount = 1;
 
 		// A list of possible operations in this question. The operation is chosen randomly based on the available ones.
 		internal string possibleOperations = "";
@@ -91,14 +67,6 @@ namespace TriviaQuizGame
 		[Tooltip("A list of questions in the math category. This is the same question used for trivia questions, but in the context of math each question has one correct answer and several wrong ones")]
 		public Question[] questions;
 
-		// Has this category been used already?
-		internal bool alreadyUsed = false;
-
-		// The category object that displays info about this category
-		internal GameObject categoryObject;
-
-		// The category index referenced when choosing the category from a grid
-		internal int categoryIndex;
 
 		// A general use index
 		internal int index;
