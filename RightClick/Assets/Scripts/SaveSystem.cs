@@ -9,24 +9,26 @@ public class SaveSystem
     public static void SavePlayerData(PlayerData data)
     {
         BinaryFormatter formatter = new BinaryFormatter();
-        string path = Application.persistentDataPath + "/player_" + data.StudentInfo.studentName + ".rightclick";
+        string path = Application.persistentDataPath + "/player_" + data.hardcoded_student_name + ".rightclick";
         FileStream stream = new FileStream(path, FileMode.Create);
         StudentInfo studentInfo = new StudentInfo(data);
         formatter.Serialize(stream, studentInfo);
         stream.Close();
 
-        Debug.Log(path);
+        Debug.Log("Saving on path: " + path);
 
     }
     public static StudentInfo LoadStudentData(string playerName)
     {
         string path = Application.persistentDataPath + "/player_" + playerName + ".rightclick";
+
         if (File.Exists(path))
         {
             BinaryFormatter formatter = new BinaryFormatter();
             FileStream stream = new FileStream(path, FileMode.Open);
             StudentInfo studentInfo = formatter.Deserialize(stream) as StudentInfo;
             stream.Close();
+            Debug.Log("Loaded from path: " + path);
 
             return studentInfo;
         }

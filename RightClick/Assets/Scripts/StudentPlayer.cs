@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.EventSystems;
+
 public interface IPlayer
 {
     void OpenDoors(IEnterable doorsToAnotherWorld);
@@ -15,7 +17,6 @@ public class StudentPlayer : MonoBehaviour, IPlayer
     private Vector3 Facing = Vector3.right;
     private new Camera camera;
     private bool isMoving = false;
-
     private void Start()
     {
         camera = Camera.main;
@@ -25,7 +26,6 @@ public class StudentPlayer : MonoBehaviour, IPlayer
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
-
     }
     private void Update()
     {
@@ -76,5 +76,5 @@ public class StudentPlayer : MonoBehaviour, IPlayer
         //Player has encounter some enterable doors trigger
     }
 
-  
+
 }

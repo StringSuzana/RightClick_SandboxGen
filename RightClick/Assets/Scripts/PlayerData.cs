@@ -20,7 +20,7 @@ public class PlayerData : MonoBehaviour
 
     public void SaveStudentInfo()
     {
-        Debug.Log(this.StudentInfo.totalExtraPoints);
+        Debug.Log("save student info, total points: "+ this.StudentInfo.totalExtraPoints);
         SaveSystem.SavePlayerData(this);
     }
     public void LoadStudentInfo()
@@ -40,5 +40,7 @@ public class PlayerData : MonoBehaviour
     {
         Debug.Log("AddExtraPoints: " + points);
         this.StudentInfo.totalExtraPoints += points;
+        Debug.Log("Total points: " + this.StudentInfo.totalExtraPoints);
+        SaveStudentInfo();
     }
 }

@@ -25,16 +25,4 @@ public class ExtraPointsBar : MonoBehaviour
     {
         imageExtraPoints.value = PlayerData.sharedInstance.StudentInfo.totalExtraPoints;
     }
-
-    public void CompletedQuest(float numberOfPoints)
-    {
-        PlayerData.sharedInstance.AddExtraPoints(numberOfPoints);
-        extraPoints += numberOfPoints;
-        if (numberOfPoints >= fullPoints)
-        {
-            //TODO
-            //display something shiny
-            //notify teacher ?
-        }
-    }
 }

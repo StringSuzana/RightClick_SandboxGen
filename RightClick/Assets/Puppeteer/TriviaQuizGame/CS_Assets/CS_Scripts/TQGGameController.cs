@@ -134,9 +134,6 @@ namespace TriviaQuizGame
         [Tooltip("The percentage we lose from our potential bonus if we answer a question wrongly. For example 0.5 makes us lose half the bonus if we answer wrongly once, and ¾ of the bonus if we answer twice incorrectly.")]
         public float bonusLoss = 0.5f;
 
-        // The highscore recorded for a level ( used in single player only )
-        internal float highScore = 0;
-
         [Tooltip("Highlight the correct answer/s when showing the result")]
         public bool showCorrectAnswer = true;
 
@@ -218,7 +215,6 @@ namespace TriviaQuizGame
 
         void Start()
         {
-            // Disable multitouch so that we don't tap two answers at the same time ( prevents multi-answer cheating, thanks to Miguel Paolino for catching this bug )
             Input.multiTouchEnabled = false;
 
             // Cache the current event system so we can enable and disable it between questions
@@ -234,9 +230,7 @@ namespace TriviaQuizGame
             if (gameOverCanvas) gameOverCanvas.gameObject.SetActive(false);
             if (victoryCanvas) victoryCanvas.gameObject.SetActive(false);
 
-            //Get the highscore for the player
-            highScore = PlayerPrefs.GetFloat(SceneManager.GetActiveScene().name + "HighScore", 0);
-
+     
             //Assign the timer icon and text for quicker access
             if (GameObject.Find("TimerIcon"))
             {
@@ -246,7 +240,8 @@ namespace TriviaQuizGame
             }
 
             // If we have an animated timer, assign it for quicker access
-            if (GameObject.Find("TimerAnimated") && GameObject.Find("TimerAnimated").GetComponent<Animation>()) timerAnimated = GameObject.Find("TimerAnimated").GetComponent<Animation>();
+            if (GameObject.Find("TimerAnimated") && GameObject.Find("TimerAnimated").GetComponent<Animation>()) 
+                timerAnimated = GameObject.Find("TimerAnimated").GetComponent<Animation>();
 
             // If we have a global time value, it takes over the local times of the quiz.
             if (globalTime > 0) timeLeft = globalTime;
@@ -260,20 +255,17 @@ namespace TriviaQuizGame
             // Record the default number of questions per group, so that when we change the number of players we can update this value correctly
             defaultQuestionsPerGroup = questionsPerGroup;
 
-            // Update the current list of players based on numberOfPlayers
             SetNumberOfPlayers(numberOfPlayers);
 
             //Assign the sound source for easier access
-            if (GameObject.FindGameObjectWithTag(soundSourceTag)) soundSource = GameObject.FindGameObjectWithTag(soundSourceTag);
+            if (GameObject.FindGameObjectWithTag(soundSourceTag)) 
+                soundSource = GameObject.FindGameObjectWithTag(soundSourceTag);
 
             // Clear the bonus object text
             if (bonusObject) bonusObject.Find("Text").GetComponent<Text>().text = "";
 
             // Clear the question text
             questionObject.Find("Text").GetComponent<Text>().text = "";
-
-            // Hide the CONTINUE button that moves to the next question
-            if (questionObject.Find("ButtonContinue")) questionObject.Find("ButtonContinue").gameObject.SetActive(false);
 
             // Assign the image and video objects from inside the question object
             if (questionObject.Find("Image")) imageObject = questionObject.Find("Image").GetComponent<RectTransform>();
@@ -288,8 +280,6 @@ namespace TriviaQuizGame
                 imageObject.gameObject.GetComponent<Image>().sprite = null;
                 imageObject.gameObject.SetActive(false);
             }
-
-            if (videoObject) videoObject.SetActive(false);
 
             // Disable the button from the question, so that we don't accidentally try to open an image that isn't there
             if (questionObject.GetComponent<Button>()) questionObject.GetComponent<Button>().enabled = false;
@@ -1244,7 +1234,6 @@ namespace TriviaQuizGame
                 for (index = 0; index < answerObjects.Length; index++)
                 {
                     // If this is the correct answer, highlight it and delay its animation
-                    //if ( answerObjects[index].Find("Text").GetComponent<Text>().text == questions[currentQuestion].correctAnswer )
                     if (index < questions[currentQuestion].answers.Length && questions[currentQuestion].answers[index].isCorrect == true)
                     {
                         // Highlight the correct answer
@@ -1253,7 +1242,6 @@ namespace TriviaQuizGame
                         // Wait for a while
                         yield return new WaitForSeconds(0.5f);
 
-                        // Play the animation Hide
                         if (animationHide)
                         {
                             // If the animation clip doesn't exist in the animation component, add it
@@ -1380,15 +1368,7 @@ namespace TriviaQuizGame
                         // Update the lives we have left
                         Updatelives();
 
-                        // THIS WAS REMOVED BECAUSE IT CAUSED THE GAME TO SKIP A PLAYER WHEN THE TIMER RUNS OUT IN HOTSEAT MODE
-                        // If we have more than one player and we are playing in turns (hotseat), go to the next player turn
-                        //if ( playInTurns == true )
-                        //{
-                        //if (currentPlayer < numberOfPlayers - 1) currentPlayer++;
-                        //else currentPlayer = 0;
-                        //}
-
-                        // Show the result of this question, which is wrong ( because we ran out of time, we lost the question )
+                           // Show the result of this question, which is wrong ( because we ran out of time, we lost the question )
                         ShowResult(false);
                     }
 
@@ -1421,37 +1401,22 @@ namespace TriviaQuizGame
         /// </summary>
         IEnumerator GameOver(float delay)
         {
+            Debug.Log("Game over");
             isGameOver = true;
 
             // Calculate total quiz duration
             playTime = DateTime.Now - startTime;
-            Debug.Log("playTime:" + playTime);
-
+           
             yield return new WaitForSeconds(delay);
 
             //Show the game over screen
             if (gameOverCanvas)
             {
-                //Show the game over screen
                 gameOverCanvas.gameObject.SetActive(true);
-
-                //Write the score text, if it exists
                 if (gameOverCanvas.Find("ScoreTexts/TextScore")) gameOverCanvas.Find("ScoreTexts/TextScore").GetComponent<Text>().text += " " + players[currentPlayer].score.ToString();
+               
 
-                //Check if we got a high score
-                if (players[currentPlayer].score > highScore)
-                {
-                    highScore = players[currentPlayer].score;
-
-                    //Register the new high score
-
-                    PlayerPrefs.SetFloat(SceneManager.GetActiveScene().name + "HighScore", players[currentPlayer].score);
-
-                }
-
-                //Write the high sscore text
-                // gameOverCanvas.Find("ScoreTexts/TextHighScore").GetComponent<Text>().text += " " + highScore.ToString();
-
+                
                 //If there is a source and a sound, play it from the source
                 if (soundSource && soundGameOver) soundSource.GetComponent<AudioSource>().PlayOneShot(soundGameOver);
             }
@@ -1478,39 +1443,22 @@ namespace TriviaQuizGame
 
                 victoryCanvas.Find("BG/CompletePanel/ScoreText/SoreNumbers").GetComponent<Text>().text = players[currentPlayer].score.ToString();
 
-                //TODO
-                PlayerPrefs.SetFloat(SceneManager.GetActiveScene().name + "_MathQuiz", players[currentPlayer].score);
-                Debug.Log(PlayerPrefs.GetFloat(SceneManager.GetActiveScene().name + "_MathQuiz"));
+                //PlayerPrefs.SetFloat(SceneManager.GetActiveScene().name + "_MathQuiz", players[currentPlayer].score);
+                //TODO:
+                //handle player
+                PlayerData.sharedInstance.AddExtraPoints(players[currentPlayer].score);
 
                 //If there is a source and a sound, play it from the source
                 if (soundSource && soundVictory) soundSource.GetComponent<AudioSource>().PlayOneShot(soundVictory);
             }
         }
 
-        /// <summary>
-        /// Restart the current level
-        /// </summary>
         public void Restart()
         {
-#if UNITY_5_3 || UNITY_5_3_OR_NEWER
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-#else
-            Application.LoadLevel(Application.loadedLevelName);
-#endif
         }
 
-        /// <summary>
-        /// Restart the current level
-        /// </summary>
-        public void MainMenu()
-        {
-#if UNITY_5_3 || UNITY_5_3_OR_NEWER
-            SceneManager.LoadScene(mainMenuLevelName);
-#else
-            Application.LoadLevel(mainMenuLevelName);
-#endif
-        }
-
+        
         /// <summary>
         /// Updates the lives we have
         /// </summary>
@@ -1524,31 +1472,7 @@ namespace TriviaQuizGame
             }
         }
 
-        /// <summary>
-        /// Shows the larger image from the thumbnail in the question image
-        /// </summary>
-        public void ShowLargerImage(Transform largerImageCanvas)
-        {
-            if (largerImageCanvas)
-            {
-                // Unhide the larger image canvas
-                largerImageCanvas.gameObject.SetActive(true);
-
-                if (questions[currentQuestion].image || questions[currentQuestion].imageURL != String.Empty)
-                {
-                    // Hide the video object
-                    largerImageCanvas.Find("Video").gameObject.SetActive(false);
-
-                    // Unhide the image object
-                    largerImageCanvas.Find("Image").gameObject.SetActive(true);
-
-                    // Assign the image from the question to the image in the larger image canvas
-                    largerImageCanvas.Find("Image").GetComponent<Image>().sprite = imageObject.GetComponent<Image>().sprite;// questions[currentQuestion].image;
-
-                }
-            }
-        }
-
+       
         /// <summary>
         /// Sets the number of players in the game
         /// </summary>
