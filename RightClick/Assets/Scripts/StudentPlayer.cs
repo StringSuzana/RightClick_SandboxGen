@@ -6,11 +6,11 @@ public interface IPlayer
 }
 public class StudentPlayer : MonoBehaviour, IPlayer
 {
+
     Rigidbody2D rb;
     NavMeshAgent agent;
 
     private Animator animator;
-    private string PlayerName = "Suzy";
     private Vector3 movement;
     private Vector3 Facing = Vector3.right;
     private new Camera camera;
@@ -22,7 +22,6 @@ public class StudentPlayer : MonoBehaviour, IPlayer
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
 
-
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
@@ -30,11 +29,11 @@ public class StudentPlayer : MonoBehaviour, IPlayer
     }
     private void Update()
     {
-        isMoving = agent.pathEndPosition.x != rb.position.x && agent.pathEndPosition.y != rb.position.y;
+        isMoving = agent.hasPath;
+
         if (Input.GetMouseButtonDown(0))
         {
             movement = camera.ScreenToWorldPoint(Input.mousePosition);
-            //MOVE AGENT
             isMoving = agent.SetDestination(movement);
         }
     }
@@ -43,12 +42,11 @@ public class StudentPlayer : MonoBehaviour, IPlayer
     {
         if (isMoving)
         {
-            agent.SetDestination(movement);
+            agent.SetDestination(movement);//MOVE AGENT
             TurnPlayer(agent.path);
         }
-        animator.SetFloat("Horizontal", movement.x);
-        animator.SetFloat("Vertical", movement.y);
-        animator.SetFloat("Speed", agent.velocity.magnitude);
+        animator.SetBool("isMoving", isMoving);
+        animator.SetFloat("speed", agent.velocity.sqrMagnitude);
     }
 
     void TurnPlayer(NavMeshPath path)
@@ -74,7 +72,9 @@ public class StudentPlayer : MonoBehaviour, IPlayer
     {
         Debug.Log("Player=> OpenDoors");
         //check some stuff
-        doorsToAnotherWorld.Enter(this.PlayerName);
+        doorsToAnotherWorld.Enter(PlayerData.sharedInstance.StudentInfo.studentName);
         //Player has encounter some enterable doors trigger
     }
+
+  
 }

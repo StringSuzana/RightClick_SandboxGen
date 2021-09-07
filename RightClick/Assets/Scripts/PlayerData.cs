@@ -11,19 +11,34 @@ public class PlayerData : MonoBehaviour
     {
         sharedInstance = this;
     }
+  
+    [HideInInspector]
+    public StudentInfo StudentInfo;
 
-    //public Text pointsText;
-    public float extraPoints;
+    [HideInInspector]
+    public string hardcoded_student_name = "Suzy";
+
+    public void SaveStudentInfo()
+    {
+        Debug.Log(this.StudentInfo.totalExtraPoints);
+        SaveSystem.SavePlayerData(this);
+    }
+    public void LoadStudentInfo()
+    {
+        StudentInfo info = SaveSystem.LoadStudentData(this.hardcoded_student_name);
+        Debug.Log("loaded points: " + info.totalExtraPoints);
+        this.StudentInfo.studentName = info.studentName;
+        this.StudentInfo.totalExtraPoints = info.totalExtraPoints;
+    }
 
     public void SetExtraPoints(float points)
     {
         Debug.Log("SetExtraPoints: " + points);
-
-        extraPoints = points;
+        this.StudentInfo.totalExtraPoints = points;
     }
     public void AddExtraPoints(float points)
     {
         Debug.Log("AddExtraPoints: " + points);
-        extraPoints += points;
+        this.StudentInfo.totalExtraPoints += points;
     }
 }
