@@ -34,8 +34,12 @@ public class StudentPlayer : MonoBehaviour, IPlayer
 
         if (Input.GetMouseButtonDown(0))
         {
-            movement = camera.ScreenToWorldPoint(Input.mousePosition);
-            isMoving = agent.SetDestination(movement);
+            if (EventSystem.current.IsPointerOverGameObject() != true)
+            {
+                movement = camera.ScreenToWorldPoint(Input.mousePosition);
+                isMoving = agent.SetDestination(movement);
+            }
+
         }
     }
 
@@ -80,6 +84,6 @@ public class StudentPlayer : MonoBehaviour, IPlayer
     public void TalkToNpc(TalkingNPC npc)
     {
         Debug.Log("Talking to NPC");
-       
+
     }
 }
