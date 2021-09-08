@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 public interface IPlayer
 {
     void OpenDoors(IEnterable doorsToAnotherWorld);
+    void TalkToNpc(TalkingNPC npc);
 }
 public class StudentPlayer : MonoBehaviour, IPlayer
 {
@@ -76,5 +77,9 @@ public class StudentPlayer : MonoBehaviour, IPlayer
         //Player has encounter some enterable doors trigger
     }
 
-
+    public void TalkToNpc(TalkingNPC npc)
+    {
+        Debug.Log("Talking to NPC");
+       
+    }
 }

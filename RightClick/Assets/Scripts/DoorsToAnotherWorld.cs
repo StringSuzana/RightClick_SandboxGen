@@ -9,12 +9,15 @@ public interface IEnterable
 }
 public class DoorsToAnotherWorld : MonoBehaviour, IEnterable
 {
-    public Canvas QuizMenu;
+
+    [SerializeField]
+    private  Canvas quizMenu;
+
 
     public void Enter(string playerName)
     {
         Debug.Log("Player: " + playerName + " wants to enter the door.");
-        QuizMenu.enabled = true;
+        quizMenu.enabled = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -27,5 +30,5 @@ public class DoorsToAnotherWorld : MonoBehaviour, IEnterable
             playerObject.OpenDoors(this);
         }
     }
-
+  
 }

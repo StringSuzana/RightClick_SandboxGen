@@ -5,14 +5,12 @@ using UnityEngine;
 public class GameUIManager : MonoBehaviour
 {
     private Canvas ExitMenu;
-    public bool isMenuVisible = false;
+    private bool isMenuVisible = false;
     void Start()
     {
         ExitMenu = GameObject.FindGameObjectWithTag(CanvasNames.exitMenu).GetComponent<Canvas>();
         ExitMenu.enabled = false;
     }
-
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
