@@ -19,7 +19,7 @@ public class TalkingNPC : MonoBehaviour
     }
     public void TriggerDialogue()
     {
-        FindObjectOfType<DialogManager>().StartDialogue(dialogue);
+        FindObjectOfType<DialogManager>().StartDialogue(dialogue);//TODO SINGLETON
     }
 
 

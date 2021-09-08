@@ -18,7 +18,6 @@ public class DialogManager : MonoBehaviour
     public Animator animator;
     void Start()
     {
-        Debug.Log("created dialog manager");
         sentences = new Queue<string>();
     }
     public void StartDialogue(Dialogue dialogue)
