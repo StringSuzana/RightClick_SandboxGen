@@ -22,18 +22,21 @@ public class Rocket : MonoBehaviour
     void Update()
     {
         horizontal = Input.GetAxisRaw("Horizontal");
-        vertical = Input.GetAxisRaw("Vertical");
 
         if (Input.GetButtonDown("Jump"))
         {
             //fire out the astronaus
-            Instantiate(astrosaurus, transform.position + (new Vector3(4f, 4f, 0f)), transform.rotation);
-            astrosaurus.GetComponent<Rigidbody2D>().AddForce(new Vector2(transform.position.x, transform.position.y + 10f), ForceMode2D.Impulse);
+            
+            var newAstro = Instantiate(astrosaurus, transform.position, transform.rotation);
+            newAstro.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, 10f), ForceMode2D.Impulse);
         }
     }
     void FixedUpdate()
     {
-        rb.MovePosition(new Vector2(transform.position.x + horizontal * moveSpeed * Time.fixedDeltaTime, transform.position.y));
-
+        //rb.MovePosition(new Vector2(transform.position.x + horizontal * moveSpeed * Time.fixedDeltaTime, transform.position.y));
+        if (horizontal != 0)
+        {
+            rb.velocity = (new Vector2(horizontal * moveSpeed * Time.fixedDeltaTime, 0f));
+        }
     }
 }

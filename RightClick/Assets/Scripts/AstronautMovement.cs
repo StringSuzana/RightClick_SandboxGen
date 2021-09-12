@@ -17,14 +17,15 @@ public class AstronautMovement : MonoBehaviour
 
     void Update()
     {
-        horizontal = Input.GetAxisRaw("Horizontal");
-        vertical = Input.GetAxisRaw("Vertical");
+        //horizontal = Input.GetAxisRaw("Horizontal");
+        //vertical = Input.GetAxisRaw("Vertical");
     }
     void FixedUpdate()
     {
+        //if in space
         //rb.MovePosition(new Vector2(transform.position.x + horizontal * moveSpeed * Time.fixedDeltaTime, transform.position.y + vertical * moveSpeed * Time.fixedDeltaTime));
         //if on the earth
-        rb.AddForce(transform.right * horizontal * moveSpeed);
+       // rb.AddForce(transform.right * horizontal * moveSpeed);
     }
 
 }
