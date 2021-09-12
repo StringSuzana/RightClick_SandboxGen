@@ -11,24 +11,23 @@ public class DoorsToAnotherWorld : MonoBehaviour, IEnterable
 {
 
     [SerializeField]
-    private  Canvas quizMenu;
+    private Canvas menu;
 
 
-    public void Enter(string playerName)
+    public void Enter(string playerName = null)
     {
         Debug.Log("Player: " + playerName + " wants to enter the door.");
-        quizMenu.enabled = true;
+        menu.enabled = true;
+        Debug.Log("is menu enabled: " + menu.isActiveAndEnabled);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("OnTriggerEnter2D in doors");
-
         var playerObject = collision.gameObject.GetComponent(typeof(IPlayer)) as IPlayer;
         if (playerObject != null)
         {
             playerObject.OpenDoors(this);
         }
     }
-  
+
 }

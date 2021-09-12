@@ -18,6 +18,7 @@ public class StudentPlayer : MonoBehaviour, IPlayer
     private Vector3 Facing = Vector3.right;
     private new Camera camera;
     private bool isMoving = false;
+    private float giveUpPathTime = 3f;
     private void Start()
     {
         camera = Camera.main;
@@ -31,7 +32,6 @@ public class StudentPlayer : MonoBehaviour, IPlayer
     private void Update()
     {
         isMoving = agent.hasPath;
-
         if (Input.GetMouseButtonDown(0))
         {
             if (EventSystem.current.IsPointerOverGameObject() != true)
@@ -41,6 +41,7 @@ public class StudentPlayer : MonoBehaviour, IPlayer
             }
 
         }
+        
     }
 
     private void FixedUpdate()
@@ -56,7 +57,7 @@ public class StudentPlayer : MonoBehaviour, IPlayer
 
     void TurnPlayer(NavMeshPath path)
     {
-        if (path.corners.Length >= 1)
+        if (path.corners.Length > 1)
         {
             Vector3 nextCorner = path.corners[1];
             if (rb.transform.position.x > nextCorner.x && Facing == Vector3.right)

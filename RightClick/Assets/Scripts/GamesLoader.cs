@@ -5,14 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class GamesLoader : MonoBehaviour
 {
-    public Canvas QuizMenu;
+    public Canvas gamesMenu;
+    public Canvas quizMenu;
     private void Start()
     {
-        QuizMenu.enabled = false;
+        gamesMenu.enabled = false;
+        quizMenu.enabled = false;
     }
     private void Update()
     {
-        if (QuizMenu.enabled == true)
+        if (quizMenu.enabled || gamesMenu.enabled)
         {
             //Pause the game (freeze the time)
             Time.timeScale = 0f;
@@ -20,13 +22,20 @@ public class GamesLoader : MonoBehaviour
     }
     public void EnterMathQuiz()
     {
-        QuizMenu.enabled = false;
+        quizMenu.enabled = false;
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneNames.mathQuiz);
     }
+    public void EnterSpaceGame()
+    {
+        gamesMenu.enabled = false;
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneNames.spaceGame);
+    }
     public void No()
     {
-        QuizMenu.enabled = false;
+        gamesMenu.enabled = false;
+        quizMenu.enabled = false;
         Time.timeScale = 1f;
 
         //TODO

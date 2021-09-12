@@ -20,4 +20,6 @@ public struct SceneNames
     public static string settings = "Settings";
     public static string menu = "Menu";
     public static string mathQuiz = "MathQuizScene";
+    public static string spaceGame = "SpaceGameScene";
+    public static string garden = "GardenScene";
 }
