@@ -28,9 +28,10 @@ public class GamesLoader : MonoBehaviour
     }
     public void EnterSpaceGame()
     {
+     
+        SceneManager.LoadScene(SceneNames.spaceGame); 
         gamesMenu.enabled = false;
         Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneNames.spaceGame);
     }
     public void No()
     {

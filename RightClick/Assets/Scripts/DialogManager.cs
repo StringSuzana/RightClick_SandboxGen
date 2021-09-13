@@ -14,6 +14,7 @@ public class DialogManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI dialogTextField;
 
+    private float letterTypingSpeed =0.05f;
 
     public Animator animator;
     void Start()
@@ -46,14 +47,26 @@ public class DialogManager : MonoBehaviour
             return;
         }
         string sentence = sentences.Dequeue();
-        Debug.Log(sentence);
-        dialogTextField.SetText(sentence);
+        StopAllCoroutines();
+        StartCoroutine(TypeSentence(sentence));
+        //Debug.Log(sentence);
+        //dialogTextField.SetText(sentence);
     }
+    IEnumerator TypeSentence(string sentence)
+    {
+        dialogTextField.text = "";
+        foreach (char letter in sentence.ToCharArray())
+        {
+            dialogTextField.text += letter;
+            yield return new WaitForSecondsRealtime(letterTypingSpeed);
+        }
+        
+    }
+
 
     public void EndDialogue()
     {
         animator.SetBool("isOpen", false);
-
         Debug.Log("End conversation");
     }
 }
