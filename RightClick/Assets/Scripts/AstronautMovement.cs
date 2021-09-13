@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class AstronautMovement : MonoBehaviour
 {
@@ -24,7 +25,11 @@ public class AstronautMovement : MonoBehaviour
         var quaternionRotation = Quaternion.LookRotation(Vector3.forward, directionVector);
         if (Input.GetButtonDown(InputKeys.Fire))
         {
-            rb.AddForce(directionVector);
+            if (EventSystem.current.IsPointerOverGameObject() != true)
+            {
+                rb.AddForce(directionVector);
+            }
+           
         }
     }
 

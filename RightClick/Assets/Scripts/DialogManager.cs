@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class DialogManager : MonoBehaviour
 {
-    
     [SerializeField]
     private Queue<string> sentences;//FIFO
     [SerializeField]
@@ -14,17 +13,17 @@ public class DialogManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI dialogTextField;
     private float letterTypingSpeed =0.05f;
-
-    public Animator animator;
+    public Animator imageWithAnimator;
     void Start()
     {
         sentences = new Queue<string>();
     }
     public void StartDialogue(Dialogue dialogue)
     {
-        animator.SetBool("isOpen", true);
+        imageWithAnimator.SetBool("isOpen", true);
         characterNameTextField.SetText(dialogue.name);
         sentences.Clear();
+
         foreach (var sentence in dialogue.sentences)
         {
             sentences.Enqueue(sentence);
@@ -51,12 +50,10 @@ public class DialogManager : MonoBehaviour
             dialogTextField.text += letter;
             yield return new WaitForSecondsRealtime(letterTypingSpeed);
         }
-        
     }
-
 
     public void EndDialogue()
     {
-        animator.SetBool("isOpen", false);
+        imageWithAnimator.SetBool("isOpen", false);
     }
 }

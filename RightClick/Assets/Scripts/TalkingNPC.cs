@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TalkingNPC : MonoBehaviour
+public class TalkingNPC : MonoBehaviour, Interactable
 {
 
     [SerializeField]
@@ -13,13 +13,13 @@ public class TalkingNPC : MonoBehaviour
         var student = collision.gameObject.GetComponent(typeof(IPlayer)) as IPlayer;
         if (student != null)
         {
-            student.TalkToNpc(this);
-            TriggerDialogue();
+            student.OpenDialogBox(this);
+            TriggerDialogue(dialogue);
         }
     }
-    public void TriggerDialogue()
+    public void TriggerDialogue(Dialogue d)
     {
-        FindObjectOfType<DialogManager>().StartDialogue(dialogue);//TODO SINGLETON
+        FindObjectOfType<DialogManager>().StartDialogue(d);//TODO SINGLETON
     }
 
 
