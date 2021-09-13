@@ -6,14 +6,13 @@ using UnityEngine.UI;
 
 public class DialogManager : MonoBehaviour
 {
-    //FIFO
+    
     [SerializeField]
-    private Queue<string> sentences;
+    private Queue<string> sentences;//FIFO
     [SerializeField]
     private TextMeshProUGUI characterNameTextField;
     [SerializeField]
     private TextMeshProUGUI dialogTextField;
-
     private float letterTypingSpeed =0.05f;
 
     public Animator animator;
@@ -25,17 +24,11 @@ public class DialogManager : MonoBehaviour
     {
         animator.SetBool("isOpen", true);
         characterNameTextField.SetText(dialogue.name);
-        Debug.Log("sentences count before clear=>" + sentences.Count);
-
         sentences.Clear();
-        Debug.Log("sentences count after clear=>" + sentences.Count);
-
         foreach (var sentence in dialogue.sentences)
         {
-            Debug.Log("foreach=>"+sentence);
             sentences.Enqueue(sentence);
         }
-
         DisplayNextSentece();
     }
 
@@ -49,8 +42,6 @@ public class DialogManager : MonoBehaviour
         string sentence = sentences.Dequeue();
         StopAllCoroutines();
         StartCoroutine(TypeSentence(sentence));
-        //Debug.Log(sentence);
-        //dialogTextField.SetText(sentence);
     }
     IEnumerator TypeSentence(string sentence)
     {
@@ -67,6 +58,5 @@ public class DialogManager : MonoBehaviour
     public void EndDialogue()
     {
         animator.SetBool("isOpen", false);
-        Debug.Log("End conversation");
     }
 }

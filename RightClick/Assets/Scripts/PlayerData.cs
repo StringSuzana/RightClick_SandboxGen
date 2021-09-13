@@ -9,7 +9,16 @@ public class PlayerData : MonoBehaviour
 
     private void Awake()
     {
-        sharedInstance = this;
+
+        if (sharedInstance != null && sharedInstance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            print("shared_instance");
+            sharedInstance = this;
+        }
     }
   
     [HideInInspector]

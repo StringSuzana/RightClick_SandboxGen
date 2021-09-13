@@ -11,18 +11,18 @@ public class ExtraPointsBar : MonoBehaviour
     [Tooltip("Current number of points.")]
     private float extraPoints;
     [Tooltip("Total number of points that fit into points bar. Might be max points before alerting teacher with scores.")]
-    private float fullPoints = 50f;
+    private readonly float fullPoints = 5000f;
 
     void Start()
     {
         imageExtraPoints = GameObject.FindGameObjectWithTag("ExtraPointsBar").GetComponent<Slider>();
-        //TODO:
-        //Check to see if data is loaded.
+        PlayerData.sharedInstance.LoadStudentInfo();
         Display();
     }
 
     private void Display()
     {
+        imageExtraPoints.maxValue = fullPoints;
         imageExtraPoints.value = PlayerData.sharedInstance.StudentInfo.totalExtraPoints;
     }
 }

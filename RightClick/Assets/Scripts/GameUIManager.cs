@@ -5,7 +5,6 @@ using UnityEngine;
 public class GameUIManager : MonoBehaviour
 {
     private Canvas ExitMenu;
-    private bool isMenuVisible = false;
     void Start()
     {
         ExitMenu = GameObject.FindGameObjectWithTag(CanvasNames.exitMenu).GetComponent<Canvas>();
@@ -14,9 +13,10 @@ public class GameUIManager : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
-        {
+        {  
+            Debug.Log("Quitting the Game");
             ExitMenu.enabled = !ExitMenu.enabled;
-            isMenuVisible = ExitMenu.enabled;
+            Application.Quit();
         }
     }
 }
