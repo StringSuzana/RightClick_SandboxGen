@@ -20,7 +20,6 @@ public class PlanetGravity : MonoBehaviour
             foreignBody.attachedRigidbody.drag = 0.0f;
 
         }
-        print("drag: " + foreignBody.attachedRigidbody.drag);
         Vector3 gravity = (transform.position - foreignBody.transform.position) * gravityScale;
         Vector3 gravityInfluence = gravity / Mathf.Pow(distFromCentreOfPlanet, 2);
 
@@ -42,3 +41,28 @@ public class PlanetGravity : MonoBehaviour
     }
 
 }
+
+
+//public struct RevolutionPeriod
+//{
+//    public static Dictionary<string, float> PLANETS = new Dictionary<string, float> {
+//        { "MERCURY", 88f } ,
+//        { "VENUS", 225f } ,
+//        { "EARTH", 365f } ,
+//        { "MARS", 687f } ,
+//        { "JUPITER", (365 * 12f) } ,
+//        { "URANUS", (365 * 84f) } ,
+//        { "NEPTUNE", (365 * 165f) }
+//    };
+//    public static float VENUS = 225f;
+//    public static float EARTH = 365f;
+//    public static float MARS = 687f;
+//    public static float JUPITER = (365 * 12f);
+//    public static float URANUS = (365 * 84f);
+//    public static float NEPTUNE = (365 * 165f);
+
+//    public float GetValueForPlanet(string planet)
+//    {
+//        return RevolutionPeriod.PLANETS[planet];
+//    }
+//}
