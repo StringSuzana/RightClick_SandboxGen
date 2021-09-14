@@ -16,7 +16,6 @@ public class PlanetNPC : MonoBehaviour, Interactable
     [SerializeField]
     private Dialogue dialogue;
     private bool hasBeenOpened = false;
-    private bool canClose = false;
 
     public void TriggerDialogue(Dialogue d)
     {
@@ -41,10 +40,9 @@ public class PlanetNPC : MonoBehaviour, Interactable
             hasBeenOpened = true;
         }
         else if (DialogManager.Instance.isOpened
-            && hasBeenOpened
-            && spriteBottomDistance > this.radius + 2f)
+            && spriteBottomDistance > 2f && spriteBottomDistance <2.1f)
         {
-            print(transform.name);
+            DialogManager.Instance.EndDialogue();
         }
 
     }
