@@ -11,30 +11,48 @@ public interface Interactable
 public class PlanetNPC : MonoBehaviour, Interactable
 {
     public float radius;
-    public Transform interactionTransform;
+    //public Transform planet;
     public Transform player;
     [SerializeField]
     private Dialogue dialogue;
     private bool hasBeenOpened = false;
+    private bool canClose = false;
+
     public void TriggerDialogue(Dialogue d)
     {
-        FindObjectOfType<DialogManager>().StartDialogue(d);//TODO SINGLETON
+        if (DialogManager.Instance.isOpened == false)
+        {
+            DialogManager.Instance.StartDialogue(d);
+        }
     }
 
     void Update()
     {
-
-        float distance = Vector3.Distance(player.position, interactionTransform.position);
-        if (!hasBeenOpened && distance <= radius)
+        float distance = Vector3.Distance(player.position, transform.position);
+        float playerYSize = player.GetComponent<SpriteRenderer>().size.y;
+        float spriteBottomDistance = distance - playerYSize;
+        if (!this.hasBeenOpened && spriteBottomDistance <= radius)
         {
+            if (DialogManager.Instance.isOpened)
+            {
+                DialogManager.Instance.EndDialogue();
+            }
             TriggerDialogue(dialogue);
-            //hasBeenOpened = true;
+            hasBeenOpened = true;
         }
+        else if (DialogManager.Instance.isOpened
+            && hasBeenOpened
+            && spriteBottomDistance > this.radius + 2f)
+        {
+            print(transform.name);
+        }
+
     }
+
 
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.cyan;
-        Gizmos.DrawWireSphere(interactionTransform.position, radius);
+        Gizmos.DrawWireSphere(transform.position, radius);
     }
 }

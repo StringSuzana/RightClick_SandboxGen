@@ -12,15 +12,73 @@ public class DialogManager : MonoBehaviour
     private TextMeshProUGUI characterNameTextField;
     [SerializeField]
     private TextMeshProUGUI dialogTextField;
-    private float letterTypingSpeed =0.05f;
+    private float letterTypingSpeed = 0.05f;
     public Animator imageWithAnimator;
+    public bool isOpened = false;
+    
+    #region SINGLETON
+    // Check to see if we're about to be destroyed.
+    private static bool m_ShuttingDown = false;
+    private static object m_Lock = new object();
+    private static DialogManager m_Instance;
+
+    /// <summary>
+    /// Access singleton instance through this propriety.
+    /// </summary>
+    public static DialogManager Instance
+    {
+        get
+        {
+            if (m_ShuttingDown)
+            {
+                Debug.LogWarning("[Singleton] Instance '" + typeof(DialogManager) +
+                    "' already destroyed. Returning null.");
+                return null;
+            }
+
+            lock (m_Lock)
+            {
+                if (m_Instance == null)
+                {
+                    m_Instance = (DialogManager)FindObjectOfType(typeof(DialogManager));
+                    if (m_Instance == null)
+                    {
+                        var singletonObject = new GameObject();
+                        m_Instance = singletonObject.AddComponent<DialogManager>();
+                        singletonObject.name = typeof(DialogManager).ToString() + " (Singleton)";
+                        DontDestroyOnLoad(singletonObject);
+                    }
+                }
+
+                return m_Instance;
+            }
+        }
+    }
+    private void OnApplicationQuit()
+    {
+        m_ShuttingDown = true;
+    }
+
+
+    private void OnDestroy()
+    {
+        m_ShuttingDown = true;
+    }
+
+    #endregion
+ 
     void Start()
     {
         sentences = new Queue<string>();
     }
     public void StartDialogue(Dialogue dialogue)
     {
-        imageWithAnimator.SetBool("isOpen", true);
+        if (isOpened)
+        {
+            EndDialogue();
+        }
+        isOpened = true;
+        imageWithAnimator.SetBool("isOpen", isOpened);
         characterNameTextField.SetText(dialogue.name);
         sentences.Clear();
 
@@ -54,6 +112,7 @@ public class DialogManager : MonoBehaviour
 
     public void EndDialogue()
     {
-        imageWithAnimator.SetBool("isOpen", false);
+        isOpened = false;
+        imageWithAnimator.SetBool("isOpen", isOpened);
     }
 }

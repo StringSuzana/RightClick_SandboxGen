@@ -1,15 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PlanetGravity : MonoBehaviour
 {
+    private float planetRadius;
     [SerializeField]
-    private float gravityScale, planetRadius;
+    private float gravityScale;
     [SerializeField]
     private float orbitDistance = 2.5f;
+    private void Start()
+    {
+        var colliders = GetComponents<CircleCollider2D>();
+        var planetCollider = colliders.FirstOrDefault(x => x.isTrigger != true);
+        planetRadius = planetCollider.radius;
+        print(transform.name + ", radius: " + planetRadius);
+    }
     private void OnTriggerStay2D(Collider2D foreignBody)
     {
+
         float distFromCentreOfPlanet = (Vector3.Distance(foreignBody.transform.position, transform.position));
         if ((distFromCentreOfPlanet - planetRadius) < orbitDistance)
         {
