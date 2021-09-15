@@ -49,7 +49,11 @@ public class PlanetGravity : MonoBehaviour
         //Rotate the little dude
         foreignBody.transform.up = Vector3.MoveTowards(foreignBody.transform.up, -gravity, gravityScale);
     }
-
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, orbitDistance);
+    }
 }
 
 

@@ -13,7 +13,8 @@ public class DialogManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI dialogTextField;
     private float letterTypingSpeed = 0.05f;
-    public Animator imageWithAnimator;
+    [SerializeField]
+    private Animator imageWithAnimator;
     public bool isOpened = false;
     
     #region SINGLETON
