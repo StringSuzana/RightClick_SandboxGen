@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DialogManager : MonoBehaviour
 {
@@ -13,13 +14,12 @@ public class DialogManager : MonoBehaviour
     private TextMeshProUGUI dialogTextField;
     private float letterTypingSpeed = 0.05f;
     [SerializeField]
-    private Canvas dialogueCanvas;   
+    private Image image;
     private Animator animator;
     public bool isOpened = false;
     
     #region SINGLETON
-    // Check to see if we're about to be destroyed.
-    private static bool m_ShuttingDown = false;
+
     private static object m_Lock = new object();
     private static DialogManager m_Instance;
 
@@ -30,40 +30,16 @@ public class DialogManager : MonoBehaviour
     {
         get
         {
-            if (m_ShuttingDown)
-            {
-                Debug.LogWarning("[Singleton] Instance '" + typeof(DialogManager) +
-                    "' already destroyed. Returning null.");
-                return null;
-            }
-
             lock (m_Lock)
             {
                 if (m_Instance == null)
                 {
                     m_Instance = (DialogManager)FindObjectOfType(typeof(DialogManager));
-                    if (m_Instance == null)
-                    {
-                        var singletonObject = new GameObject();
-                        m_Instance = singletonObject.AddComponent<DialogManager>();
-                        singletonObject.name = typeof(DialogManager).ToString() + " (Singleton)";
-                        DontDestroyOnLoad(singletonObject);
-                    }
                 }
 
                 return m_Instance;
             }
         }
-    }
-    private void OnApplicationQuit()
-    {
-        m_ShuttingDown = true;
-    }
-
-
-    private void OnDestroy()
-    {
-        m_ShuttingDown = true;
     }
 
     #endregion
@@ -74,7 +50,7 @@ public class DialogManager : MonoBehaviour
     }
     public void StartDialogue(Dialogue dialogue)
     {
-        animator = dialogueCanvas.GetComponentInChildren<Animator>();
+        animator = image.GetComponent<Animator>();
         if (isOpened)
         {
             EndDialogue();

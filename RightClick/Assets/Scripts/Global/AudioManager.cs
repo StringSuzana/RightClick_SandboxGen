@@ -6,7 +6,6 @@ public class AudioManager : MonoBehaviour
 {
     public Sound[] sounds;
     public static AudioManager instance;
-
     void Awake()
     {
         #region SINGLETON
@@ -28,7 +27,11 @@ public class AudioManager : MonoBehaviour
             s.source.pitch = s.pitch;
         }
     }
-    
+    private void Start()
+    {
+        Play(SoundNames.Bacground);
+    }
+
     public void Play(string name)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);

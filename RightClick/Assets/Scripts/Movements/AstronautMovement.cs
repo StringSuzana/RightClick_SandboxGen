@@ -14,9 +14,48 @@ public class AstronautMovement : MonoBehaviour
     private Material dissolve;
 
     private bool canMove;
-    private Vector3 directionVector;
+    private Vector3 directionVector = Vector3.zero;
     private static float currentDissolve;
     
+
+    void Start()
+    {
+        camera = Camera.main;
+        rb = GetComponent<Rigidbody2D>();
+        currentDissolve = 1f;
+        dissolve.SetFloat("_Fade", currentDissolve);
+    }
+
+    void Update()
+    {
+
+        //var quaternionRotation = Quaternion.LookRotation(Vector3.forward, directionVector);
+        if (Input.GetButtonDown(InputKeys.Fire))
+        {
+            if (EventSystem.current.IsPointerOverGameObject() != true)
+            {
+                Vector3 mousePosition = camera.ScreenToWorldPoint(Input.mousePosition);
+                directionVector = (mousePosition - transform.position) * moveSpeed * Time.deltaTime;
+                rb.AddForce(directionVector);
+            }
+
+        }
+        print(directionVector);
+    }
+
+    //void FixedUpdate()
+    //{
+    //    if (canMove == true)
+    //    {
+            
+    //        directionVector = Vector3.zero;
+    //    }
+    //    //if in space
+    //    //rb.MovePosition(new Vector2(transform.position.x + horizontal * moveSpeed * Time.fixedDeltaTime, transform.position.y + vertical * moveSpeed * Time.fixedDeltaTime));
+    //    //if on the earth
+    //    // rb.AddForce(transform.right * horizontal * moveSpeed);
+    //}
+
     public IEnumerator FadeAway()
     {
         print("currentDissolve" + currentDissolve);
@@ -30,42 +69,6 @@ public class AstronautMovement : MonoBehaviour
             currentDissolve -= 0.1f;
         }
     }
-
-    void Start()
-    {
-        camera = Camera.main;
-        rb = GetComponent<Rigidbody2D>();
-        currentDissolve = 1f;
-        dissolve.SetFloat("_Fade", currentDissolve);
-    }
-
-    void Update()
-    {
-        var quaternionRotation = Quaternion.LookRotation(Vector3.forward, directionVector);
-        if (Input.GetButtonDown(InputKeys.Fire))
-        {
-            if (EventSystem.current.IsPointerOverGameObject() != true)
-            {
-                Vector3 mousePosition = camera.ScreenToWorldPoint(Input.mousePosition);
-                directionVector = (mousePosition - transform.position) * moveSpeed * Time.deltaTime;
-                canMove = true;
-            }
-
-        }
-    }
-
-    void FixedUpdate()
-    {
-        if (canMove == true && directionVector != null)
-        {
-            rb.AddForce(directionVector);
-        }
-        //if in space
-        //rb.MovePosition(new Vector2(transform.position.x + horizontal * moveSpeed * Time.fixedDeltaTime, transform.position.y + vertical * moveSpeed * Time.fixedDeltaTime));
-        //if on the earth
-        // rb.AddForce(transform.right * horizontal * moveSpeed);
-    }
-
 }
 public struct InputKeys
 {

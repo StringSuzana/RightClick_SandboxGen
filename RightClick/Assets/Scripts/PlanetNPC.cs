@@ -16,7 +16,10 @@ public class PlanetNPC : MonoBehaviour, Interactable
     [SerializeField]
     private Dialogue dialogue;
     private bool hasBeenOpened = false;
-
+    private void Start()
+    {
+       
+    }
     public void TriggerDialogue(Dialogue d)
     {
         if (DialogManager.Instance.isOpened == false)
