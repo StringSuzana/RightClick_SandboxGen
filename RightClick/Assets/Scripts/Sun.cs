@@ -4,17 +4,15 @@ using UnityEngine;
 
 public class Sun : MonoBehaviour
 {
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
+ 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        var astronaut = collision.gameObject.GetComponent(typeof(AstronautMovement)) as AstronautMovement;
+        if (astronaut != null)
+        {
+            Time.timeScale = 0;
+            StartCoroutine(astronaut.FadeAway());
+        }
+
     }
 }

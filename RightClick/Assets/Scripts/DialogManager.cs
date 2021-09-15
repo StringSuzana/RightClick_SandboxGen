@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class DialogManager : MonoBehaviour
 {
@@ -14,7 +13,8 @@ public class DialogManager : MonoBehaviour
     private TextMeshProUGUI dialogTextField;
     private float letterTypingSpeed = 0.05f;
     [SerializeField]
-    private Animator imageWithAnimator;
+    private Canvas dialogueCanvas;   
+    private Animator animator;
     public bool isOpened = false;
     
     #region SINGLETON
@@ -74,12 +74,13 @@ public class DialogManager : MonoBehaviour
     }
     public void StartDialogue(Dialogue dialogue)
     {
+        animator = dialogueCanvas.GetComponentInChildren<Animator>();
         if (isOpened)
         {
             EndDialogue();
         }
         isOpened = true;
-        imageWithAnimator.SetBool("isOpen", isOpened);
+        animator.SetBool("isOpen", isOpened);
         characterNameTextField.SetText(dialogue.name);
         sentences.Clear();
 
@@ -114,6 +115,6 @@ public class DialogManager : MonoBehaviour
     public void EndDialogue()
     {
         isOpened = false;
-        imageWithAnimator.SetBool("isOpen", isOpened);
+        animator.SetBool("isOpen", isOpened);
     }
 }
