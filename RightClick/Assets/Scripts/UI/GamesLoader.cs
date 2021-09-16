@@ -5,8 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class GamesLoader : MonoBehaviour
 {
-    public Canvas gamesMenu;
-    public Canvas quizMenu;
+    [SerializeField]
+    private Canvas gamesMenu;
+    [SerializeField]
+    private Canvas quizMenu;
+    [SerializeField]
+    private Animator fadeTransition;
+    private float transitionTime = 1f;
+
     private void Start()
     {
         gamesMenu.enabled = false;
@@ -24,14 +30,14 @@ public class GamesLoader : MonoBehaviour
     {
         quizMenu.enabled = false;
         Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneNames.mathQuiz);
+        StartCoroutine(FadeScene(SceneNames.MathQuizScene));
+       
     }
     public void EnterSpaceGame()
     {
-     
-        SceneManager.LoadScene(SceneNames.spaceGame); 
         gamesMenu.enabled = false;
         Time.timeScale = 1f;
+        StartCoroutine(FadeScene(SceneNames.SpaceGameScene));
     }
     public void No()
     {
@@ -42,5 +48,12 @@ public class GamesLoader : MonoBehaviour
         //TODO
         //Move player away from the collision area
         //disable moving character on button clicks
+    }
+
+    public IEnumerator FadeScene(string sceneName)
+    {
+        fadeTransition.SetTrigger("Start");
+        yield return new WaitForSeconds(transitionTime);
+        SceneManager.LoadScene(sceneName);
     }
 }

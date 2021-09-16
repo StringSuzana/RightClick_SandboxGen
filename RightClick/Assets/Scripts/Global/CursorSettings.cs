@@ -12,7 +12,6 @@ public class CursorSettings : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        Debug.Log(this.transform.parent.gameObject.name);//Make it glow
         ShowCustomCursor();
     }
     private void OnMouseExit()

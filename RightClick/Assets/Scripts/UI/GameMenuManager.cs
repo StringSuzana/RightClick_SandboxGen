@@ -7,6 +7,6 @@ public class InGameMenuManager : MonoBehaviour
 {
     public void CloseMenu()
     {
-        SceneManager.UnloadSceneAsync(SceneNames.menu);
+        SceneManager.UnloadSceneAsync(SceneNames.Menu);
     }
 }

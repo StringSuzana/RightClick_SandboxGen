@@ -29,7 +29,18 @@ public class AudioManager : MonoBehaviour
     }
     private void Start()
     {
-        Play(SoundNames.Bacground);
+       Play(SoundNames.Bacground);
+    }
+    public void PlayOneTime(string name)
+    {
+        Debug.Log(name);
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        if (s == null)
+        {
+            Debug.Log("AudioClip not found => maybe the name in inspector is wrong or it is not there");
+            return;
+        }
+        s.source.PlayOneShot(s.audioClip);
     }
 
     public void Play(string name)

@@ -8,18 +8,19 @@ public class LoginMenu : MonoBehaviour
     public void LogIn()
     {
         Debug.Log("start game");
-        SceneManager.LoadScene(SceneNames.start);
+        SceneManager.LoadScene(SceneNames.StartPageScene);
     }
 }
 
 public struct SceneNames
 {
-    public static string sample = "SampleScene";
-    public static string login = "LoginScene";
-    public static string start = "StartPageScene";
-    public static string settings = "Settings";
-    public static string menu = "Menu";
-    public static string mathQuiz = "MathQuizScene";
-    public static string spaceGame = "SpaceGameScene";
-    public static string garden = "GardenScene";
+    public static string SampleScene = "SampleScene";
+    public static string LoginScene = "LoginScene";
+    public static string StartPageScene = "StartPageScene";
+    public static string Settings = "Settings";
+    public static string Menu = "Menu";
+    public static string MathQuizScene = "MathQuizScene";
+    public static string SpaceGameScene = "SpaceGameScene";
+    public static string GardenScene = "GardenScene";
+
 }
