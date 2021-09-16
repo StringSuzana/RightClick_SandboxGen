@@ -238,7 +238,7 @@ namespace TriviaQuizGame
 				gameController.GetComponent<TQGGameController>().victoryCanvas = victoryCanvas;
 
 				// Set the victory sound in the quiz as the sound to be played when we finish this category
-				gameController.GetComponent<TQGGameController>().soundVictory = soundVictory;
+				AudioManager.Instance.PlayOneTime(SoundNames.Victory);
 			}
 		}
 

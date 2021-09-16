@@ -13,4 +13,8 @@ public struct SoundNames
     public static string RelaxedSpaceMusic = "RelaxedSpaceMusic";
     public static string RespawnCountdown = "RespawnCountdown";
     public static string Explosion = "Explosion";
+    public static string Correct = "Correct";
+    public static string Question = "Question";
+    public static string TimeUp = "TimeUp";
+    public static string Wrong = "Wrong";
 }

@@ -67,7 +67,7 @@ namespace TriviaQuizGame
 
         //The buttons that display the possible answers
         internal Transform[] answerObjects;
-
+        public Transform skipButton;
         [Tooltip("Randomize the display order of answers when a new question is presented")]
         public bool randomizeAnswers = true;
 
@@ -188,15 +188,6 @@ namespace TriviaQuizGame
         [Tooltip("The animation that plays when showing a new question")]
         public AnimationClip animationQuestion;
 
-        [Tooltip("Various sounds and their source")]
-        public AudioClip soundQuestion;
-        public AudioClip soundCorrect;
-        public AudioClip soundWrong;
-        public AudioClip soundTimeUp;
-        public AudioClip soundGameOver;
-        public AudioClip soundVictory;
-        public string soundSourceTag = "Sound";
-        internal GameObject soundSource;
 
         // This counts the time of the current sound playing now, so that we don't play another sound
         internal float soundPlayTime = 0;
@@ -230,7 +221,7 @@ namespace TriviaQuizGame
             if (gameOverCanvas) gameOverCanvas.gameObject.SetActive(false);
             if (victoryCanvas) victoryCanvas.gameObject.SetActive(false);
 
-     
+
             //Assign the timer icon and text for quicker access
             if (GameObject.Find("TimerIcon"))
             {
@@ -240,7 +231,7 @@ namespace TriviaQuizGame
             }
 
             // If we have an animated timer, assign it for quicker access
-            if (GameObject.Find("TimerAnimated") && GameObject.Find("TimerAnimated").GetComponent<Animation>()) 
+            if (GameObject.Find("TimerAnimated") && GameObject.Find("TimerAnimated").GetComponent<Animation>())
                 timerAnimated = GameObject.Find("TimerAnimated").GetComponent<Animation>();
 
             // If we have a global time value, it takes over the local times of the quiz.
@@ -257,9 +248,6 @@ namespace TriviaQuizGame
 
             SetNumberOfPlayers(numberOfPlayers);
 
-            //Assign the sound source for easier access
-            if (GameObject.FindGameObjectWithTag(soundSourceTag)) 
-                soundSource = GameObject.FindGameObjectWithTag(soundSourceTag);
 
             // Clear the bonus object text
             if (bonusObject) bonusObject.Find("Text").GetComponent<Text>().text = "";
@@ -801,7 +789,8 @@ namespace TriviaQuizGame
                         else eventSystem.SetSelectedGameObject(null);
 
                         //If there is a source and a sound, play it from the source
-                        if (soundSource && soundQuestion) soundSource.GetComponent<AudioSource>().PlayOneShot(soundQuestion);
+                        AudioManager.Instance.PlayOneTime(SoundNames.Question);
+
                     }
                     else // If we have no more questions in the list, win the game
                     {
@@ -927,7 +916,7 @@ namespace TriviaQuizGame
 
 
                     //If there is a source and a sound, play it from the source
-                    if (soundSource && soundWrong) soundSource.GetComponent<AudioSource>().PlayOneShot(soundWrong);
+                    //TODO   if (soundSource && soundWrong) soundSource.GetComponent<AudioSource>().PlayOneShot(soundWrong);
                 }
                 else // Choosing the correct answer
                 {
@@ -977,7 +966,7 @@ namespace TriviaQuizGame
                     }
 
                     //If there is a source and a sound, play it from the source
-                    if (soundSource && soundCorrect) soundSource.GetComponent<AudioSource>().PlayOneShot(soundCorrect);
+                    //TODO   if (soundSource && soundCorrect) soundSource.GetComponent<AudioSource>().PlayOneShot(soundCorrect);
 
                     // Show the result of this question, which is correct
                     ShowResult(true);
@@ -1063,7 +1052,7 @@ namespace TriviaQuizGame
                 }
 
                 //If there is a source and a sound, play it from the source
-                if (soundSource && soundCorrect) soundSource.GetComponent<AudioSource>().PlayOneShot(soundCorrect);
+                //TODO     if (soundSource && soundCorrect) soundSource.GetComponent<AudioSource>().PlayOneShot(soundCorrect);
             }
             else
             {
@@ -1120,7 +1109,7 @@ namespace TriviaQuizGame
                 }
 
                 //If there is a source and a sound, play it from the source
-                if (soundSource && soundWrong) soundSource.GetComponent<AudioSource>().PlayOneShot(soundWrong);
+                //TODO   if (soundSource && soundWrong) soundSource.GetComponent<AudioSource>().PlayOneShot(soundWrong);
             }
 
             ShowResult(goodResult);
@@ -1261,13 +1250,9 @@ namespace TriviaQuizGame
             yield return new WaitForSeconds(delay);
 
             // Stop any sounds playing, and reset the sound play time
-            if (soundSource)
-            {
-                if (isGameOver == false) soundSource.GetComponent<AudioSource>().Stop();
 
-                soundPlayTime = 0;
-            }
-
+            AudioManager.Instance.StopAllSounds();
+            soundPlayTime = 0;
 
 
             // Clear and hide the image object
@@ -1368,7 +1353,7 @@ namespace TriviaQuizGame
                         // Update the lives we have left
                         Updatelives();
 
-                           // Show the result of this question, which is wrong ( because we ran out of time, we lost the question )
+                        // Show the result of this question, which is wrong ( because we ran out of time, we lost the question )
                         ShowResult(false);
                     }
 
@@ -1383,7 +1368,7 @@ namespace TriviaQuizGame
                     }
 
                     //If there is a source and a sound, play it from the source
-                    if (soundSource && soundTimeUp) soundSource.GetComponent<AudioSource>().PlayOneShot(soundTimeUp);
+                    //TODO     if (soundSource && soundTimeUp) soundSource.GetComponent<AudioSource>().PlayOneShot(soundTimeUp);
                 }
             }
         }
@@ -1406,7 +1391,7 @@ namespace TriviaQuizGame
 
             // Calculate total quiz duration
             playTime = DateTime.Now - startTime;
-           
+
             yield return new WaitForSeconds(delay);
 
             //Show the game over screen
@@ -1414,11 +1399,11 @@ namespace TriviaQuizGame
             {
                 gameOverCanvas.gameObject.SetActive(true);
                 if (gameOverCanvas.Find("ScoreTexts/TextScore")) gameOverCanvas.Find("ScoreTexts/TextScore").GetComponent<Text>().text += " " + players[currentPlayer].score.ToString();
-               
 
-                
+
+
                 //If there is a source and a sound, play it from the source
-                if (soundSource && soundGameOver) soundSource.GetComponent<AudioSource>().PlayOneShot(soundGameOver);
+                //TODO      if (soundSource && soundGameOver) soundSource.GetComponent<AudioSource>().PlayOneShot(soundGameOver);
             }
         }
 
@@ -1448,8 +1433,7 @@ namespace TriviaQuizGame
                 //handle player
                 PlayerData.sharedInstance.AddExtraPoints(players[currentPlayer].score);
 
-                //If there is a source and a sound, play it from the source
-                if (soundSource && soundVictory) soundSource.GetComponent<AudioSource>().PlayOneShot(soundVictory);
+                AudioManager.Instance.PlayOneTime(SoundNames.Victory);
             }
         }
 
@@ -1458,9 +1442,9 @@ namespace TriviaQuizGame
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
-        
+
         /// <summary>
-        /// Updates the lives we have
+        /// Updates the lives
         /// </summary>
         public void Updatelives()
         {
@@ -1472,7 +1456,7 @@ namespace TriviaQuizGame
             }
         }
 
-       
+
         /// <summary>
         /// Sets the number of players in the game
         /// </summary>
@@ -1882,10 +1866,10 @@ namespace TriviaQuizGame
         public void SkipQuestion()
         {
             // Stop listening for a click on the button to move to the next question
-            if (questionObject.GetComponent<Button>()) questionObject.GetComponent<Button>().onClick.RemoveAllListeners();
-
+            if (questionObject?.GetComponent<Button>()) questionObject?.GetComponent<Button>()?.onClick?.RemoveAllListeners();
             StartCoroutine(ResetQuestion(0.5f));
         }
+
 
     }
 }

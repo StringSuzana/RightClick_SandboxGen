@@ -6,6 +6,20 @@ using System.Collections.Generic;
 
 public class AudioManager : MonoBehaviour
 {
+    internal float soundPlayTime = 0;
+    internal bool isPaused = false;
+
+    [Tooltip("The PlayerPrefs name of the sound")]
+    public string playerPref = "SoundVolume";
+
+    [Tooltip("The index of the current value of the sound")]
+    internal float currentState = 1;
+
+    [Tooltip("The volume when this sound button is toggled on")]
+    public float volumeOn = 1;
+    [Tooltip("The volume when this sound button is toggled off")]
+    public float volumeOff = 0;
+
     public Sound[] sounds;
     public static AudioManager Instance;
     void Awake()
@@ -42,7 +56,7 @@ public class AudioManager : MonoBehaviour
             Debug.Log("AudioClip not found => maybe the name in inspector is wrong or it is not there");
             return;
         }
-         s.source.PlayOneShot(s.audioClip);
+        s.source.PlayOneShot(s.audioClip);
     }
 
     public void Play(string name)
@@ -55,12 +69,27 @@ public class AudioManager : MonoBehaviour
         }
         s.source.Play();
     }
+    /// <summary>
+    /// TODO
+    /// </summary>
+    public void Play(string name, float seconds)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        if (s == null)
+        {
+            Debug.Log("Sound not found => maybe the name in inspector is wrong or it is not there");
+            return;
+        }
+       
+        s.source.Play();
+    }
+
     public void PlayTransition(string newSoundName, float transitionTime)
     {
         StartCoroutine(CrossFadeAudio(newSoundName, transitionTime));
     }
 
-   public  IEnumerator CrossFadeAudio(string newSoundName, float transitionTime)
+    public IEnumerator CrossFadeAudio(string newSoundName, float transitionTime)
     {
         Sound sound = Array.Find(sounds, sound => sound.name == newSoundName);
         if (sound == null)
@@ -71,8 +100,7 @@ public class AudioManager : MonoBehaviour
         float timeOut = 1;
         while (timeOut > 0)
         {
-            Debug.Log("timeout " + timeOut);
-            foreach (var s in sounds)
+             foreach (var s in sounds)
             {
                 if (s?.source.isPlaying == true)
                 {
@@ -88,4 +116,17 @@ public class AudioManager : MonoBehaviour
             timeOut -= transitionTime;
         }
     }
+
+    public void StopAllSounds()
+    {
+        foreach (var s in sounds)
+        {
+            if (s?.source.isPlaying == true)
+            {
+                s.source.Stop();
+            }
+        }
+    }
+
+
 }
