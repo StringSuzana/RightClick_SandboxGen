@@ -1,16 +1,18 @@
 using UnityEngine.Audio;
 using UnityEngine;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 
 public class AudioManager : MonoBehaviour
 {
     public Sound[] sounds;
-    public static AudioManager instance;
+    public static AudioManager Instance;
     void Awake()
     {
         #region SINGLETON
-        if (instance == null)
-            instance = this;
+        if (Instance == null)
+            Instance = this;
         else
         {
             Destroy(gameObject);
@@ -29,7 +31,7 @@ public class AudioManager : MonoBehaviour
     }
     private void Start()
     {
-       Play(SoundNames.Bacground);
+        Play(SoundNames.Bacground);
     }
     public void PlayOneTime(string name)
     {
@@ -40,7 +42,7 @@ public class AudioManager : MonoBehaviour
             Debug.Log("AudioClip not found => maybe the name in inspector is wrong or it is not there");
             return;
         }
-        s.source.PlayOneShot(s.audioClip);
+         s.source.PlayOneShot(s.audioClip);
     }
 
     public void Play(string name)
@@ -52,5 +54,38 @@ public class AudioManager : MonoBehaviour
             return;
         }
         s.source.Play();
+    }
+    public void PlayTransition(string newSoundName, float transitionTime)
+    {
+        StartCoroutine(CrossFadeAudio(newSoundName, transitionTime));
+    }
+
+   public  IEnumerator CrossFadeAudio(string newSoundName, float transitionTime)
+    {
+        Sound sound = Array.Find(sounds, sound => sound.name == newSoundName);
+        if (sound == null)
+        {
+            Debug.Log("AudioClip not found => maybe the name in inspector is wrong or it is not there=> " + newSoundName);
+            yield return null;
+        }
+        float timeOut = 1;
+        while (timeOut > 0)
+        {
+            Debug.Log("timeout " + timeOut);
+            foreach (var s in sounds)
+            {
+                if (s?.source.isPlaying == true)
+                {
+                    s.source.volume = timeOut;
+                    Debug.Log(s?.source.name + " is playing " + s?.source.clip.name);
+
+                }
+            }
+            sound.source.volume = 1 - timeOut;
+            sound.source.Play();
+
+            yield return new WaitForSeconds(transitionTime);
+            timeOut -= transitionTime;
+        }
     }
 }

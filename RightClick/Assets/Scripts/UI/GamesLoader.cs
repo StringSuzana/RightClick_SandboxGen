@@ -11,7 +11,7 @@ public class GamesLoader : MonoBehaviour
     private Canvas quizMenu;
     [SerializeField]
     private Animator fadeTransition;
-    private float transitionTime = 1f;
+    private float transitionTime = .2f;
 
     private void Start()
     {
@@ -31,12 +31,14 @@ public class GamesLoader : MonoBehaviour
         quizMenu.enabled = false;
         Time.timeScale = 1f;
         StartCoroutine(FadeScene(SceneNames.MathQuizScene));
-       
+
     }
     public void EnterSpaceGame()
     {
         gamesMenu.enabled = false;
         Time.timeScale = 1f;
+        AudioManager.Instance.PlayTransition(SoundNames.RelaxedSpaceMusic, transitionTime);
+        // StartCoroutine(AudioManager.instance.CrossFadeAudio
         StartCoroutine(FadeScene(SceneNames.SpaceGameScene));
     }
     public void No()
@@ -53,6 +55,7 @@ public class GamesLoader : MonoBehaviour
     public IEnumerator FadeScene(string sceneName)
     {
         fadeTransition.SetTrigger("Start");
+
         yield return new WaitForSeconds(transitionTime);
         SceneManager.LoadScene(sceneName);
     }

@@ -6,9 +6,9 @@ public class SettingsManager : MonoBehaviour
 {
     void Start()
     {
-        //Don't destroy this object when loading a new scene
         DontDestroyOnLoad(transform.gameObject);
     }
+
 
   
 }
