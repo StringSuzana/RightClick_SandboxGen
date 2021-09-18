@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -28,18 +29,28 @@ public class GamesLoader : MonoBehaviour
     }
     public void EnterMathQuiz()
     {
+        SavePositionForLater();
+        
         quizMenu.enabled = false;
         Time.timeScale = 1f;
         AudioManager.Instance.PlayTransition(SoundNames.RelaxedSpaceMusic, transitionTime);
         StartCoroutine(FadeScene(SceneNames.MathQuizScene));
 
     }
+
+    private void SavePositionForLater()
+    {
+        PlayerData.sharedInstance.SavePlayersPosition();
+        PlayerPrefs.SetInt("loadPosition", 1);
+    }
+
     public void EnterSpaceGame()
     {
+        SavePositionForLater();
+
         gamesMenu.enabled = false;
         Time.timeScale = 1f;
         AudioManager.Instance.PlayTransition(SoundNames.RelaxedSpaceMusic, transitionTime);
-        // StartCoroutine(AudioManager.instance.CrossFadeAudio
         StartCoroutine(FadeScene(SceneNames.SpaceGameScene));
     }
     public void No()
@@ -60,4 +71,5 @@ public class GamesLoader : MonoBehaviour
         yield return new WaitForSeconds(transitionTime);
         SceneManager.LoadScene(sceneName);
     }
+
 }

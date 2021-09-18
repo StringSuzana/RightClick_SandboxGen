@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameUIManager : MonoBehaviour
+public class QuitManager : MonoBehaviour
 {
     private Canvas ExitMenu;
     void Start()
@@ -16,8 +16,16 @@ public class GameUIManager : MonoBehaviour
         {  
             Debug.Log("Quitting the Game");
             ExitMenu.enabled = !ExitMenu.enabled;
-            Application.Quit();
         }
+    }
+    public void CloseMenu()
+    {
+        ExitMenu.enabled = false;
+    }
+    public void QuitGame()
+    {
+        Application.Quit();
+        UnityEditor.EditorApplication.isPlaying = false;
     }
 }
 public struct CanvasNames

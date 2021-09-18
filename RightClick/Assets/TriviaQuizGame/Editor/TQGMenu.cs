@@ -29,7 +29,7 @@ namespace TriviaQuizGame
 			GameObject gameController  = Selection.activeObject as GameObject;
 
 			// If the selected gameobject does not contain a TQGGameController component, give an error
-			if ( gameController == null || gameController.GetComponent<TQGGameController>() == null && gameController.GetComponent<Category>() == null ) 
+			if ( gameController == null || gameController.GetComponent<QuizController>() == null && gameController.GetComponent<Category>() == null ) 
 			{
 				EditorUtility.DisplayDialog("Quiz object not selected!","You must select a Quiz object in order to import the questions to it. A Quiz is any object with a TQGGameController or Category component attached to it.","Ok");
 				return;
@@ -42,7 +42,7 @@ namespace TriviaQuizGame
 			if ( path.Length != 0 ) 
 			{	
 				// Run the LoadXML function in the game controller with the XML file we loaded
-				if ( gameController.GetComponent<TQGGameController>() )    gameController.GetComponent<TQGGameController>().LoadXml(File.ReadAllText(path), false);
+				if ( gameController.GetComponent<QuizController>() )    gameController.GetComponent<QuizController>().LoadXml(File.ReadAllText(path), false);
 
 				// Run the LoadXML function in the category with the XML file we loaded
 				if ( gameController.GetComponent<Category>() )    gameController.GetComponent<Category>().LoadXml(File.ReadAllText(path), false);
@@ -60,7 +60,7 @@ namespace TriviaQuizGame
 			GameObject gameController  = Selection.activeObject as GameObject;
 			
 			// If the selected gameobject does not contain a TQGGameController component, give an error
-			if ( gameController == null || gameController.GetComponent<TQGGameController>() == null && gameController.GetComponent<Category>() == null ) 
+			if ( gameController == null || gameController.GetComponent<QuizController>() == null && gameController.GetComponent<Category>() == null ) 
 			{
 				EditorUtility.DisplayDialog("Quiz object not selected!","You must select a Quiz object in order to import the questions to it. A Quiz is any object with a TQGGameController or Category component attached to it.","Ok");
 				return;
@@ -73,7 +73,7 @@ namespace TriviaQuizGame
 			if ( path.Length != 0 ) 
 			{	
 				// Run the LoadXML function in the game controller with the XML file we loaded
-				if ( gameController.GetComponent<TQGGameController>() )    gameController.GetComponent<TQGGameController>().LoadXml(File.ReadAllText(path), true);
+				if ( gameController.GetComponent<QuizController>() )    gameController.GetComponent<QuizController>().LoadXml(File.ReadAllText(path), true);
 				
 				// Run the LoadXML function in the category with the XML file we loaded
 				if ( gameController.GetComponent<Category>() )    gameController.GetComponent<Category>().LoadXml(File.ReadAllText(path), true);
@@ -91,7 +91,7 @@ namespace TriviaQuizGame
 			GameObject gameController  = Selection.activeObject as GameObject;
 			 
 			// If the selected gameobject does not contain a TQGGameController component, give an error
-			if ( gameController == null || gameController.GetComponent<TQGGameController>() == null && gameController.GetComponent<Category>() == null ) 
+			if ( gameController == null || gameController.GetComponent<QuizController>() == null && gameController.GetComponent<Category>() == null ) 
 			{
 				EditorUtility.DisplayDialog("Quiz object not selected!","You must select a Quiz object in order to import the questions to it. A Quiz is any object with a TQGGameController or Category component attached to it.","Ok");
 				return;
@@ -107,7 +107,7 @@ namespace TriviaQuizGame
 			if (path.Length != 0) 
 			{
 				// Save the XML file to disk
-				if ( gameController.GetComponent<TQGGameController>() )    File.WriteAllBytes(path, System.Text.Encoding.UTF8.GetBytes(gameController.GetComponent<TQGGameController>().SaveXml()));
+				if ( gameController.GetComponent<QuizController>() )    File.WriteAllBytes(path, System.Text.Encoding.UTF8.GetBytes(gameController.GetComponent<QuizController>().SaveXml()));
 				if ( gameController.GetComponent<Category>() )    File.WriteAllBytes(path, System.Text.Encoding.UTF8.GetBytes(gameController.GetComponent<Category>().SaveXml()));
 			}
 		}

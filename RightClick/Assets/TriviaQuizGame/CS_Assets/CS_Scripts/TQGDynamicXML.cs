@@ -29,7 +29,7 @@ namespace TriviaQuizGame.Types
 		public AddressType addressType;
 
 		// Used to hold the gamecontroller or th ecategory object, if they exist
-		internal TQGGameController gameController;
+		internal QuizController gameController;
 		internal Category category;
 
 		[Tooltip("The address of the Xml you want to load from the web. This is used if you want to load a set of questions while the game is running online in a browser")]
@@ -59,7 +59,7 @@ namespace TriviaQuizGame.Types
 		/// </summary>
 		void Awake()
 		{
-			gameController = (TQGGameController) FindObjectOfType(typeof(TQGGameController));
+			gameController = (QuizController) FindObjectOfType(typeof(QuizController));
 
 			category = GetComponent<Category>();
 		}
@@ -164,7 +164,7 @@ namespace TriviaQuizGame.Types
                 if (path.Length != 0)
                 {
                     // Save the XML file to disk
-                    if (gameController.GetComponent<TQGGameController>()) File.WriteAllBytes(path, System.Text.Encoding.UTF8.GetBytes(gameController.GetComponent<TQGGameController>().SaveXml()));
+                    if (gameController.GetComponent<QuizController>()) File.WriteAllBytes(path, System.Text.Encoding.UTF8.GetBytes(gameController.GetComponent<QuizController>().SaveXml()));
                     if (gameController.GetComponent<Category>()) File.WriteAllBytes(path, System.Text.Encoding.UTF8.GetBytes(gameController.GetComponent<Category>().SaveXml()));
                 }
 #endif

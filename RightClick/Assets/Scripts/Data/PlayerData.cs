@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class PlayerData : MonoBehaviour
 {
+    [SerializeField]
+    private Transform playerTransform;
     public static PlayerData sharedInstance;
 
     private void Awake()
@@ -20,16 +22,26 @@ public class PlayerData : MonoBehaviour
         }
         DontDestroyOnLoad(this.gameObject);
     }
-  
+
     [HideInInspector]
     public StudentInfo StudentInfo;
 
     [HideInInspector]
     public string hardcoded_student_name = "Suzy";
-
+    public void SavePlayersPosition()
+    {
+        //minus some random value to awoid collider triggers
+        PlayerPrefs.SetFloat("Pos_x", playerTransform.position.x - 1);
+        PlayerPrefs.SetFloat("Pos_y", playerTransform.position.y);
+        PlayerPrefs.SetFloat("Pos_z", playerTransform.position.z);
+    }
+    public Vector3 LoadPlayersPosition()
+    {
+        return new Vector3(PlayerPrefs.GetFloat("Pos_x"), PlayerPrefs.GetFloat("Pos_y"), PlayerPrefs.GetFloat("Pos_z"));
+    }
     public void SaveStudentInfo()
     {
-        Debug.Log("save student info, total points: "+ this.StudentInfo.totalExtraPoints);
+        Debug.Log("save student info, total points: " + this.StudentInfo.totalExtraPoints);
         SaveSystem.SavePlayerData(this);
     }
     public void LoadStudentInfo()

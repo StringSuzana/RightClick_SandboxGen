@@ -210,7 +210,7 @@ namespace TriviaQuizGame
 			}
 
 			// If we have a Quiz GameController or Category, fill it up with the questions
-			if (GetComponent<TQGGameController>()) GetComponent<TQGGameController>().questions = questions;
+			if (GetComponent<QuizController>()) GetComponent<QuizController>().questions = questions;
 			if (GetComponent<Category>()) GetComponent<Category>().questions = questions;
 		}
 	}

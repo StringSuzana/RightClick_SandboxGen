@@ -24,6 +24,10 @@ public class OpenWorldStudentMovement : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+        if (PlayerPrefs.GetInt("loadPosition") == 1)
+        {
+            transform.position = PlayerData.sharedInstance.LoadPlayersPosition();
+        }
     }
 
     // Update is called once per frame
