@@ -115,7 +115,12 @@ public class AudioManager : MonoBehaviour
                 {
                     s.source.volume = timeOut;
                     Debug.Log(s?.source.name + " is playing " + s?.source.clip.name);
-
+                    if (timeOut - transitionTime <= 0 )
+                    {
+                        Debug.Log("Stopped playing: " + s.source.name);
+                        s.source.Stop();
+                        
+                    }
                 }
             }
             sound.source.volume = 1 - timeOut;
