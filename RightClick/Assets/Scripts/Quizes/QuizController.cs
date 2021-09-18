@@ -206,10 +206,10 @@ public class QuizController : MonoBehaviour
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
         }
-        var clip = soundVictory.audioClip;
-        var source = soundVictory.source;
-        //Do this instead 
+    
+        //Do this instead later
         //Background = AudioManager.Instance.sounds[0];
+
         Input.multiTouchEnabled = false;
 
         // Cache the current event system so we can enable and disable it between questions
@@ -314,6 +314,7 @@ public class QuizController : MonoBehaviour
             answerObject.gameObject.SetActive(false);
         }
 
+        volumeScale = PlayerPrefs.GetFloat(PlayerPref.volumeScale);
 
         StartCoroutine(StartGame());
 
@@ -506,7 +507,7 @@ public class QuizController : MonoBehaviour
 
             UpdateTimer();
         }
-        volumeScale = PlayerPrefs.GetFloat(PlayerPref.volumeScale);
+       // volumeScale = PlayerPrefs.GetFloat(PlayerPref.volumeScale);
     }
 
     /// <summary>
@@ -777,8 +778,8 @@ public class QuizController : MonoBehaviour
                     if (keyboardControls == true) eventSystem.SetSelectedGameObject(answerObjects[0].gameObject);
                     else eventSystem.SetSelectedGameObject(null);
 
-                    //If there is a source and a sound, play it from the source
-                    AudioManager.Instance.PlayOneTime(SoundNames.Question, volumeScale);
+                 
+                    AudioManager.Instance.PlayOneTime(SoundNames.Question, PlayerPrefs.GetFloat(PlayerPref.volumeScale));
 
 
                 }
@@ -903,9 +904,8 @@ public class QuizController : MonoBehaviour
                     ShowResult(false);
                 }
 
-
-                //If there is a source and a sound, play it from the source
-                if (soundWrong != null) soundWrong.source.PlayOneShot(soundWrong.audioClip, volumeScale);
+                print(PlayerPrefs.GetFloat(PlayerPref.volumeScale));
+                if (soundWrong != null) soundWrong.source.PlayOneShot(soundWrong.audioClip, PlayerPrefs.GetFloat(PlayerPref.volumeScale));
             }
             else // Choosing the correct answer
             {
@@ -954,8 +954,8 @@ public class QuizController : MonoBehaviour
                     if (timeLeft > globalTime) globalTime = timeLeft;
                 }
 
-                //If there is a source and a sound, play it from the source
-                if (soundCorrect != null) soundCorrect.source.PlayOneShot(soundCorrect.audioClip, volumeScale);
+                print(PlayerPrefs.GetFloat(PlayerPref.volumeScale));
+                if (soundCorrect != null) soundCorrect.source.PlayOneShot(soundCorrect.audioClip, PlayerPrefs.GetFloat(PlayerPref.volumeScale));
 
                 // Show the result of this question, which is correct
                 ShowResult(true);
@@ -1195,7 +1195,7 @@ public class QuizController : MonoBehaviour
                 }
 
                 //If there is a source and a sound, play it from the source
-                if (soundTimeUp != null) soundTimeUp.source.PlayOneShot(soundTimeUp.audioClip, volumeScale);
+                if (soundTimeUp != null) soundTimeUp.source.PlayOneShot(soundTimeUp.audioClip, PlayerPrefs.GetFloat(PlayerPref.volumeScale));
 
             }
         }
@@ -1231,7 +1231,7 @@ public class QuizController : MonoBehaviour
 
 
             //If there is a source and a sound, play it from the source
-            if (soundGameOver != null) soundGameOver.source.PlayOneShot(soundGameOver.audioClip, volumeScale);
+            if (soundGameOver != null) soundGameOver.source.PlayOneShot(soundGameOver.audioClip, PlayerPrefs.GetFloat(PlayerPref.volumeScale));
 
         }
     }
@@ -1279,7 +1279,7 @@ public class QuizController : MonoBehaviour
             PlayerData.sharedInstance.AddExtraPoints(players[currentPlayer].score);
 
             //  AudioManager.Instance.PlayOneTime(SoundNames.Victory, volumeScale);
-            if (soundVictory != null) soundVictory.source.PlayOneShot(soundVictory.audioClip, volumeScale);
+            if (soundVictory != null) soundVictory.source.PlayOneShot(soundVictory.audioClip, PlayerPrefs.GetFloat(PlayerPref.volumeScale));
 
         }
 

@@ -78,20 +78,6 @@ public class AudioManager : MonoBehaviour
         }
         s.source.Play();
     }
-    /// <summary>
-    /// TODO
-    /// </summary>
-    public void Play(string name, float seconds)
-    {
-        Sound s = Array.Find(sounds, sound => sound.name == name);
-        if (s == null)
-        {
-            Debug.Log("Sound not found => maybe the name in inspector is wrong or it is not there");
-            return;
-        }
-
-        s.source.Play();
-    }
 
     public void PlayTransition(string newSoundName, float transitionTime)
     {
@@ -144,8 +130,8 @@ public class AudioManager : MonoBehaviour
 
     public void SetNewVolume(float newVolume)
     {
-        PlayerPrefs.SetFloat(PlayerPref.volumeScale, currentState);
         currentState = newVolume;
+        PlayerPrefs.SetFloat(PlayerPref.volumeScale, currentState);
         foreach (var s in sounds)
         {
             s.source.volume = newVolume;
