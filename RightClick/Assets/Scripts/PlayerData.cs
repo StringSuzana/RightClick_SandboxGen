@@ -16,9 +16,9 @@ public class PlayerData : MonoBehaviour
         }
         else
         {
-            print("shared_instance");
             sharedInstance = this;
         }
+        DontDestroyOnLoad(this.gameObject);
     }
   
     [HideInInspector]

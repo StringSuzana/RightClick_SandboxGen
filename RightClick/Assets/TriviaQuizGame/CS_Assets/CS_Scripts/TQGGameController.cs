@@ -153,45 +153,27 @@ namespace TriviaQuizGame
         [Tooltip("Set the same question bonus for all questions in the quiz. This overwrites the individual bonuses set on each question. Keep this at 0 if you don't want to overwrite any values")]
         public float quizBonus = 0;
 
-        [Header("<User Interface Options>")]
+        [Header("User Interface Options")]
         [Tooltip("The bonus object that displays how much we can win if we answer correctly")]
         public Transform bonusObject;
 
-        //The canvas of the timer in the game
-        internal GameObject timerIcon;
+         internal GameObject timerIcon;
         internal Image timerBar;
         internal Text timerText;
 
         // This is a special animation-based timer. Instead of filling up a bar it calculates the animation of the timer
         internal Animation timerAnimated;
 
-        [Tooltip("The menu that appears if we lose all lives in a single player game")]
         public Transform gameOverCanvas;
-
-        [Tooltip("The menu that appears after finishing all the questions in the game. Used for single player and hotseat")]
         public Transform victoryCanvas;
 
-
-        // Is the game over?
         internal bool isGameOver = false;
 
-        [Tooltip("The level of the main menu that can be loaded after the game ends")]
-        public string mainMenuLevelName = "CS_StartMenu";
-
-        [Header("<Animation & Sounds>")]
-        [Tooltip("The animation that plays when showing an answer")]
+        [Header("Animation & Sounds")]
         public AnimationClip animationShow;
-
-        [Tooltip("The animation that plays when hiding an answer")]
         public AnimationClip animationHide;
-
-        [Tooltip("The animation that plays when choosing the correct answer")]
         public AnimationClip animationCorrect;
-
-        [Tooltip("The animation that plays when choosing the wrong answer")]
         public AnimationClip animationWrong;
-
-        [Tooltip("The animation that plays when showing a new question")]
         public AnimationClip animationQuestion;
 
         public Sound[] sounds;
@@ -985,11 +967,6 @@ namespace TriviaQuizGame
             }
         }
 
-
-        /// <summary>
-        /// Shows the result of the question, whether we answered correctly or not
-        /// </summary>
-        /// <param name="isCorrectAnswer">We got the correct answer.</param>
         public void ShowResult(bool isCorrectAnswer)
         {
             // We are not asking a question now
@@ -1046,10 +1023,8 @@ namespace TriviaQuizGame
                 // If there is a button, activate it
                 if (questionObject.GetComponent<Button>()) questionObject.GetComponent<Button>().enabled = true;
 
-                // Remove any other function listening for a click on this button ( ex: Stop listening for "ShowLargerImage()" )
                 questionObject.GetComponent<Button>().onClick.RemoveAllListeners();
 
-                // Listen for a click on the button to move to the next question
                 questionObject.GetComponent<Button>().onClick.AddListener(delegate () { SkipQuestion(); });
 
                 // Set the button as selected
@@ -1066,7 +1041,6 @@ namespace TriviaQuizGame
         /// Resets the question and answers, in preparation for the next question
         /// </summary>
         /// <returns>The question.</returns>
-        /// <param name="delay">Delay in seconds before showing the next question</param>
         IEnumerator ResetQuestion(float delay)
         {
             // Go through all the answers hide the wrong ones
@@ -1208,7 +1182,6 @@ namespace TriviaQuizGame
                         // Reduce from lives
                         players[currentPlayer].lives--;
 
-                        // Update the lives we have left
                         Updatelives();
 
                         // Show the result of this question, which is wrong ( because we ran out of time, we lost the question )
@@ -1288,16 +1261,26 @@ namespace TriviaQuizGame
                 if(victoryCanvas.Find("BG/CompletePanel/ScoreText/SoreNumbers"))
                 victoryCanvas.Find("BG/CompletePanel/ScoreText/SoreNumbers").GetComponent<Text>().text = players[currentPlayer].score.ToString();
 
-                //PlayerPrefs.SetFloat(SceneManager.GetActiveScene().name + "_MathQuiz", players[currentPlayer].score);
-                //TODO:
-                //handle player
-                print(players.Length);
-                print(players[0]);
-                print(players[0].score);
+
                 print(players[0].lives);
-                print(players[0].name);
-                print(players[0].nameText);
-               // PlayerData.sharedInstance.AddExtraPoints(players[currentPlayer].score);
+                    switch (players[0].lives)
+                    {
+                        case 1:
+                        if (victoryCanvas.Find("BG/CompletePanel/Titlebg/LeftStar/Background/Checkmark"))
+                            victoryCanvas.Find("BG/CompletePanel/Titlebg/LeftStar/Background/Checkmark").gameObject.SetActive(true);
+                            break;
+                        case 2:
+                        if (victoryCanvas.Find("BG/CompletePanel/Titlebg/MiddleStar/Background/Checkmark"))
+                            victoryCanvas.Find("BG/CompletePanel/Titlebg/MiddleStar/Background/Checkmark").gameObject.SetActive(true);
+                        break;
+                        case 3:
+                        if (victoryCanvas.Find("BG/CompletePanel/Titlebg/RightStar/Background/Checkmark"))
+                            victoryCanvas.Find("BG/CompletePanel/Titlebg/RightStar/Background/Checkmark").gameObject.SetActive(true);
+                        break;
+                    }
+                
+                   
+                PlayerData.sharedInstance.AddExtraPoints(players[currentPlayer].score);
 
                 //  AudioManager.Instance.PlayOneTime(SoundNames.Victory, volumeScale);
                 if (soundVictory != null) soundVictory.source.PlayOneShot(soundVictory.audioClip, volumeScale);
@@ -1734,9 +1717,15 @@ namespace TriviaQuizGame
 
         public void SkipQuestion()
         {
+            bonus = 0;
+            players[currentPlayer].lives--;
+            Updatelives();
+            wrongAnswers++;
+           // ShowResult(false);
             // Stop listening for a click on the button to move to the next question
             if (questionObject?.GetComponent<Button>()) questionObject?.GetComponent<Button>()?.onClick?.RemoveAllListeners();
             StartCoroutine(ResetQuestion(0.5f));
+
         }
 
 
