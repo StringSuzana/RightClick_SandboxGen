@@ -3,14 +3,12 @@ using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TriviaQuizGame;
 
 public class AudioManager : MonoBehaviour
 {
     internal float soundPlayTime = 0;
     internal bool isPaused = false;
-
-    [Tooltip("The PlayerPrefs name of the sound")]
-    public string playerPref = "SoundVolume";
 
     [Tooltip("The index of the current value of the sound")]
     internal float currentState = 1;
@@ -58,6 +56,17 @@ public class AudioManager : MonoBehaviour
         }
         s.source.PlayOneShot(s.audioClip);
     }
+    public void PlayOneTime(string name, float volumeScale)
+    {
+        Debug.Log(name);
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        if (s == null)
+        {
+            Debug.Log("AudioClip not found => maybe the name in inspector is wrong or it is not there");
+            return;
+        }
+        s.source.PlayOneShot(s.audioClip, volumeScale);
+    }
 
     public void Play(string name)
     {
@@ -80,7 +89,7 @@ public class AudioManager : MonoBehaviour
             Debug.Log("Sound not found => maybe the name in inspector is wrong or it is not there");
             return;
         }
-       
+
         s.source.Play();
     }
 
@@ -100,7 +109,7 @@ public class AudioManager : MonoBehaviour
         float timeOut = 1;
         while (timeOut > 0)
         {
-             foreach (var s in sounds)
+            foreach (var s in sounds)
             {
                 if (s?.source.isPlaying == true)
                 {
@@ -128,5 +137,13 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-
+    public void SetNewVolume(float newVolume)
+    {
+        PlayerPrefs.SetFloat(PlayerPref.volumeScale, currentState);
+        currentState = newVolume;
+        foreach (var s in sounds)
+        {
+            s.source.volume = newVolume;
+        }
+    }
 }

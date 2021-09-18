@@ -23,14 +23,6 @@ namespace TriviaQuizGame
         internal AudioSource firstMusicObject;
         internal AudioSource secondMusicObject;
 
-        /// <summary>
-        /// Awake is called when the script instance is being loaded.
-        /// Awake is used to initialize any variables or game state before the game starts. Awake is called only once during the 
-        /// lifetime of the script instance. Awake is called after all objects are initialized so you can safely speak to other 
-        /// objects or query them using eg. GameObject.FindWithTag. Each GameObject's Awake is called in a random order between objects. 
-        /// Because of this, you should use Awake to set up references between scripts, and use Start to pass any information back and forth. 
-        /// Awake is always called before any Start functions. This allows you to order initialization of scripts. Awake can not act as a coroutine.
-        /// </summary>
         void Awake()
         {
             //Find all the music objects in the scene
@@ -85,13 +77,6 @@ namespace TriviaQuizGame
             Destroy(firstMusicObject.gameObject);
         }
 
-        /// <summary>
-        /// Start is only called once in the lifetime of the behaviour.
-        /// The difference between Awake and Start is that Start is only called if the script instance is enabled.
-        /// This allows you to delay any initialization code, until it is really needed.
-        /// Awake is always called before any Start functions.
-        /// This allows you to order initialization of scripts
-        /// </summary>
         void Start()
         {
             //Don't destroy this object when loading a new scene

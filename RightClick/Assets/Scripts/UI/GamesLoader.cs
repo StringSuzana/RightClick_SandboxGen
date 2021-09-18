@@ -30,6 +30,7 @@ public class GamesLoader : MonoBehaviour
     {
         quizMenu.enabled = false;
         Time.timeScale = 1f;
+        AudioManager.Instance.PlayTransition(SoundNames.RelaxedSpaceMusic, transitionTime);
         StartCoroutine(FadeScene(SceneNames.MathQuizScene));
 
     }
