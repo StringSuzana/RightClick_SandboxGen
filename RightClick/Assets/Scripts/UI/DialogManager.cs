@@ -44,7 +44,7 @@ public class DialogManager : MonoBehaviour
 
     #endregion
  
-    void Start()
+    void Awake()
     {
         sentences = new Queue<string>();
     }

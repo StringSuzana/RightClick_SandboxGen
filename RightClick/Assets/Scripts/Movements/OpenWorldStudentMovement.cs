@@ -61,13 +61,13 @@ public class OpenWorldStudentMovement : MonoBehaviour
             Vector3 nextCorner = path.corners[1];
             if (rb.transform.position.x > nextCorner.x && Facing == Vector3.right)
             {
-                Debug.Log("GO LEFT");
+               // Debug.Log("GO LEFT");
                 transform.localScale = new Vector3(-1f, 1f, 1f);
                 Facing = Vector3.left;
             }
             else if (rb.position.x < nextCorner.x && Facing == Vector3.left)
             {
-                Debug.Log("GO right");
+               // Debug.Log("GO right");
                 transform.localScale = new Vector3(1f, 1f, 1f);
                 Facing = Vector3.right;
             }
