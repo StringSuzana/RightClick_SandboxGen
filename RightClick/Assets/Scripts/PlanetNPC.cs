@@ -16,12 +16,20 @@ public class PlanetNPC : MonoBehaviour, Interactable
     [SerializeField]
     private Dialogue dialogue;
     private bool hasBeenOpened = false;
-    private void Start()
-    {
-       
-    }
+
+    [SerializeField]
+    private SpaceGame game;
+
     public void TriggerDialogue(Dialogue d)
     {
+        if (this.gameObject.name == "EARTH")
+        {
+            StartCoroutine(game.Victory(2));
+        }
+        else
+        {
+            game.LandedOnWrongPlanet();
+        }
         if (DialogManager.Instance.isOpened == false)
         {
             DialogManager.Instance.StartDialogue(d);
@@ -43,13 +51,12 @@ public class PlanetNPC : MonoBehaviour, Interactable
             hasBeenOpened = true;
         }
         else if (DialogManager.Instance.isOpened
-            && spriteBottomDistance > 2f && spriteBottomDistance <2.1f)
+            && spriteBottomDistance > 2f && spriteBottomDistance < 2.1f)
         {
             DialogManager.Instance.EndDialogue();
         }
 
     }
-
 
     void OnDrawGizmosSelected()
     {

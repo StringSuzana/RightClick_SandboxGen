@@ -15,39 +15,42 @@ public class PlanetGravity : MonoBehaviour
         var colliders = GetComponents<CircleCollider2D>();
         var planetCollider = colliders.FirstOrDefault(x => x.isTrigger != true);
         planetRadius = planetCollider.radius;
-        print(transform.name + ", radius: " + planetRadius);
     }
     private void OnTriggerStay2D(Collider2D foreignBody)
     {
-
-        float distFromCentreOfPlanet = (Vector3.Distance(foreignBody.transform.position, transform.position));
-        if ((distFromCentreOfPlanet - planetRadius) < orbitDistance)
+        var astronautMovement = foreignBody.gameObject.GetComponent(typeof(AstronautMovement)) as AstronautMovement;
+        if (astronautMovement != null)
         {
-            foreignBody.attachedRigidbody.drag = 10f * (1 / distFromCentreOfPlanet) * Time.deltaTime;
+
+            float distFromCentreOfPlanet = (Vector3.Distance(foreignBody.transform.position, transform.position));
+            if ((distFromCentreOfPlanet - planetRadius) < orbitDistance)
+            {
+                foreignBody.attachedRigidbody.drag = 10f * (1 / distFromCentreOfPlanet) * Time.deltaTime;
+            }
+            else
+            {
+                foreignBody.attachedRigidbody.drag = 0.0f;
+
+            }
+            Vector3 gravity = (transform.position - foreignBody.transform.position) * gravityScale;
+            Vector3 gravityInfluence = gravity / Mathf.Pow(distFromCentreOfPlanet, 2);
+
+            if (transform.name == "MARS")
+            {
+                Debug.DrawLine(foreignBody.transform.position, gravity, Color.red, 0.3f); ;
+
+            }
+            else
+            {
+                Debug.DrawLine(foreignBody.transform.position, gravity, Color.green, 0.3f); ;
+
+            }
+
+            //Fake planets gravity
+            foreignBody.gameObject.GetComponent<Rigidbody2D>().AddForce(gravityInfluence);
+            //Rotate the little dude
+            foreignBody.transform.up = Vector3.MoveTowards(foreignBody.transform.up, -gravity, gravityScale);
         }
-        else
-        {
-            foreignBody.attachedRigidbody.drag = 0.0f;
-
-        }
-        Vector3 gravity = (transform.position - foreignBody.transform.position) * gravityScale;
-        Vector3 gravityInfluence = gravity / Mathf.Pow(distFromCentreOfPlanet, 2);
-
-        if (transform.name == "MARS")
-        {
-            Debug.DrawLine(foreignBody.transform.position, gravity, Color.red, 0.3f); ;
-
-        }
-        else
-        {
-            Debug.DrawLine(foreignBody.transform.position, gravity, Color.green, 0.3f); ;
-
-        }
-
-        //Fake planets gravity
-        foreignBody.gameObject.GetComponent<Rigidbody2D>().AddForce(gravityInfluence);
-        //Rotate the little dude
-        foreignBody.transform.up = Vector3.MoveTowards(foreignBody.transform.up, -gravity, gravityScale);
     }
     void OnDrawGizmosSelected()
     {
