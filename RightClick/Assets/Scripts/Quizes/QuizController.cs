@@ -1728,8 +1728,8 @@ public class QuizController : MonoBehaviour
     }
     public void ContinueToPreviousScene()
     {
-        AudioManager.Instance.PlayTransition(MusicNames.Bacground, 1.5f);
-
+        Time.timeScale = 1f;
+        AudioManager.Instance.PlayTransition(MusicNames.Bacground, 0.1f);
         SceneManager.LoadScene(SceneNames.GardenScene);
     }
 

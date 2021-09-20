@@ -36,6 +36,7 @@ public class AudioManager : MonoBehaviour
             m.source.clip = m.audioClip;
             m.source.volume = PlayerPrefs.GetFloat(PlayerPref.MusicVolume);
             m.source.pitch = m.pitch;
+            m.source.loop = true;
         }
         foreach (var s in sounds)
         {
@@ -63,7 +64,7 @@ public class AudioManager : MonoBehaviour
         s.source.volume = PlayerPrefs.GetFloat(PlayerPref.SoundVolume);
         s.source.PlayOneShot(s.audioClip);
     }
-  
+
     public void PlayMusic(string name)
     {
         Sound m = Array.Find(music, song => song.name == name);
@@ -96,16 +97,27 @@ public class AudioManager : MonoBehaviour
             {
                 if (m?.source.isPlaying == true)
                 {
-                    m.source.volume = timeOut;                   
-                    if (timeOut - transitionTime <= 0 )
+                    m.source.volume = timeOut;
+                    if (timeOut - transitionTime <= 0)
                     {
                         Debug.Log("Stopped playing: " + m.source.name);
                         m.source.Stop();
                     }
                 }
             }
-            song.source.volume = 1 - timeOut;
-            song.source.Play();
+            if ((1 - timeOut) <= PlayerPrefs.GetFloat(PlayerPref.MusicVolume))
+            {
+                song.source.volume = (1 - timeOut);
+            }
+            else
+            {
+                song.source.volume = PlayerPrefs.GetFloat(PlayerPref.MusicVolume);
+
+            }
+            if (!song.source.isPlaying)
+            {
+                song.source.Play();
+            }
 
             yield return new WaitForSeconds(transitionTime);
             timeOut -= transitionTime;
@@ -124,7 +136,7 @@ public class AudioManager : MonoBehaviour
     }
 
     public void SetMusicVolume(float value)
-    {       
+    {
         PlayerPrefs.SetFloat(PlayerPref.MusicVolume, value);
         foreach (var m in music)
         {

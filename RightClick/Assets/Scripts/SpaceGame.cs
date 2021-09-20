@@ -165,7 +165,7 @@ public class SpaceGame : MonoBehaviour, IGame
     public void ContinueToPreviousScene()
     {
         Time.timeScale = 1f;
-        AudioManager.Instance.PlayTransition(MusicNames.Bacground, 1f);
+        AudioManager.Instance.PlayTransition(MusicNames.Bacground, 0.1f);
         SceneManager.LoadScene(SceneNames.GardenScene);
     }
 
