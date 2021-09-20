@@ -125,7 +125,7 @@ public class AudioManager : MonoBehaviour
 
     public void SetMusicVolume(float value)
     {       
-        PlayerPrefs.SetFloat(PlayerPref.SoundVolume, value);
+        PlayerPrefs.SetFloat(PlayerPref.MusicVolume, value);
         foreach (var m in music)
         {
             m.source.volume = value;

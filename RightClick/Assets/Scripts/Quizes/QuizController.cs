@@ -9,8 +9,8 @@ using TriviaQuizGame.Types;
 
 public struct PlayerPref
 {
-    public static string SoundVolume = "SoundVolume";
-    public static string MusicVolume = "MusicVolume";
+    public static string SoundVolume = "SoundValue";
+    public static string MusicVolume = "MusicValue";
 
 }
 
