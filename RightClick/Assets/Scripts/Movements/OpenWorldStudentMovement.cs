@@ -43,11 +43,13 @@ public class OpenWorldStudentMovement : MonoBehaviour
             }
 
         }
+      
     }
     private void FixedUpdate()
     {
         if (isMoving)
         {
+           
             agent.SetDestination(movement);//MOVE AGENT
             TurnPlayer(agent.path);
         }

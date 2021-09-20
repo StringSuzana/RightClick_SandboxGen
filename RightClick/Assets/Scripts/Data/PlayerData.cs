@@ -31,8 +31,8 @@ public class PlayerData : MonoBehaviour
     public void SavePlayersPosition()
     {
         //minus some random value to awoid collider triggers
-        PlayerPrefs.SetFloat("Pos_x", playerTransform.position.x - 1);
-        PlayerPrefs.SetFloat("Pos_y", playerTransform.position.y);
+        PlayerPrefs.SetFloat("Pos_x", playerTransform.position.x - 2f);
+        PlayerPrefs.SetFloat("Pos_y", playerTransform.position.y - 2f);
         PlayerPrefs.SetFloat("Pos_z", playerTransform.position.z);
     }
     public Vector3 LoadPlayersPosition()

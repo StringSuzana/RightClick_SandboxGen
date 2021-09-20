@@ -9,7 +9,9 @@ using TriviaQuizGame.Types;
 
 public struct PlayerPref
 {
-    public static string volumeScale = "SoundVolume";
+    public static string SoundVolume = "SoundVolume";
+    public static string MusicVolume = "MusicVolume";
+
 }
 
 public class QuizController : MonoBehaviour
@@ -206,7 +208,7 @@ public class QuizController : MonoBehaviour
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
         }
-    
+
         //Do this instead later
         //Background = AudioManager.Instance.sounds[0];
 
@@ -314,7 +316,7 @@ public class QuizController : MonoBehaviour
             answerObject.gameObject.SetActive(false);
         }
 
-        volumeScale = PlayerPrefs.GetFloat(PlayerPref.volumeScale);
+        volumeScale = PlayerPrefs.GetFloat(PlayerPref.SoundVolume);
 
         StartCoroutine(StartGame());
 
@@ -507,7 +509,7 @@ public class QuizController : MonoBehaviour
 
             UpdateTimer();
         }
-       // volumeScale = PlayerPrefs.GetFloat(PlayerPref.volumeScale);
+        // volumeScale = PlayerPrefs.GetFloat(PlayerPref.volumeScale);
     }
 
     /// <summary>
@@ -778,8 +780,9 @@ public class QuizController : MonoBehaviour
                     if (keyboardControls == true) eventSystem.SetSelectedGameObject(answerObjects[0].gameObject);
                     else eventSystem.SetSelectedGameObject(null);
 
-                 
-                    AudioManager.Instance.PlayOneTime(SoundNames.Question, PlayerPrefs.GetFloat(PlayerPref.volumeScale));
+                    //if (soundWrong != null) soundWrong.source.PlayOneShot(soundWrong.audioClip, PlayerPrefs.GetFloat(PlayerPref.SoundVolume));
+
+                    AudioManager.Instance.PlaySoundOneTime(SoundNames.Question);
 
 
                 }
@@ -904,8 +907,8 @@ public class QuizController : MonoBehaviour
                     ShowResult(false);
                 }
 
-                print(PlayerPrefs.GetFloat(PlayerPref.volumeScale));
-                if (soundWrong != null) soundWrong.source.PlayOneShot(soundWrong.audioClip, PlayerPrefs.GetFloat(PlayerPref.volumeScale));
+                print(PlayerPrefs.GetFloat(PlayerPref.SoundVolume));
+                if (soundWrong != null) soundWrong.source.PlayOneShot(soundWrong.audioClip, PlayerPrefs.GetFloat(PlayerPref.SoundVolume));
             }
             else // Choosing the correct answer
             {
@@ -954,8 +957,8 @@ public class QuizController : MonoBehaviour
                     if (timeLeft > globalTime) globalTime = timeLeft;
                 }
 
-                print(PlayerPrefs.GetFloat(PlayerPref.volumeScale));
-                if (soundCorrect != null) soundCorrect.source.PlayOneShot(soundCorrect.audioClip, PlayerPrefs.GetFloat(PlayerPref.volumeScale));
+                print(PlayerPrefs.GetFloat(PlayerPref.SoundVolume));
+                if (soundCorrect != null) soundCorrect.source.PlayOneShot(soundCorrect.audioClip, PlayerPrefs.GetFloat(PlayerPref.SoundVolume));
 
                 // Show the result of this question, which is correct
                 ShowResult(true);
@@ -1195,7 +1198,7 @@ public class QuizController : MonoBehaviour
                 }
 
                 //If there is a source and a sound, play it from the source
-                if (soundTimeUp != null) soundTimeUp.source.PlayOneShot(soundTimeUp.audioClip, PlayerPrefs.GetFloat(PlayerPref.volumeScale));
+                if (soundTimeUp != null) soundTimeUp.source.PlayOneShot(soundTimeUp.audioClip, PlayerPrefs.GetFloat(PlayerPref.SoundVolume));
 
             }
         }
@@ -1231,7 +1234,7 @@ public class QuizController : MonoBehaviour
 
 
             //If there is a source and a sound, play it from the source
-            if (soundGameOver != null) soundGameOver.source.PlayOneShot(soundGameOver.audioClip, PlayerPrefs.GetFloat(PlayerPref.volumeScale));
+            if (soundGameOver != null) soundGameOver.source.PlayOneShot(soundGameOver.audioClip, PlayerPrefs.GetFloat(PlayerPref.SoundVolume));
 
         }
     }
@@ -1279,7 +1282,7 @@ public class QuizController : MonoBehaviour
             PlayerData.sharedInstance.AddExtraPoints(players[currentPlayer].score);
 
             //  AudioManager.Instance.PlayOneTime(SoundNames.Victory, volumeScale);
-            if (soundVictory != null) soundVictory.source.PlayOneShot(soundVictory.audioClip, PlayerPrefs.GetFloat(PlayerPref.volumeScale));
+            if (soundVictory != null) soundVictory.source.PlayOneShot(soundVictory.audioClip, PlayerPrefs.GetFloat(PlayerPref.SoundVolume));
 
         }
 
@@ -1725,7 +1728,8 @@ public class QuizController : MonoBehaviour
     }
     public void ContinueToPreviousScene()
     {
-  
+        AudioManager.Instance.PlayTransition(MusicNames.Bacground, 1.5f);
+
         SceneManager.LoadScene(SceneNames.GardenScene);
     }
 

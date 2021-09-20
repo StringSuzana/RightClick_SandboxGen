@@ -16,13 +16,13 @@ public class ToggleSound : MonoBehaviour
 
     void Awake()
     {
-        currentState = PlayerPrefs.GetFloat(PlayerPref.volumeScale);
+        currentState = PlayerPrefs.GetFloat(PlayerPref.SoundVolume);
         SetSound();
     }
 
     void SetSound()
     {
-        PlayerPrefs.SetFloat(PlayerPref.volumeScale, currentState);
+        PlayerPrefs.SetFloat(PlayerPref.SoundVolume, currentState);
         Color newColor = btnSound.material.color;
         if (currentState == volumeOn)
             newColor.a = 1;
@@ -30,7 +30,7 @@ public class ToggleSound : MonoBehaviour
             newColor.a = 0.5f;
         btnSound.color = newColor;
 
-        AudioManager.Instance.SetNewVolume(currentState);
+        AudioManager.Instance.SetMusicVolume(currentState);
     }
 
     public void Toggle()

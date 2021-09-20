@@ -55,7 +55,6 @@ public class PlanetNPC : MonoBehaviour, Interactable
         {
             DialogManager.Instance.EndDialogue();
         }
-
     }
 
     void OnDrawGizmosSelected()

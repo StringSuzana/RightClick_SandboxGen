@@ -33,7 +33,7 @@ public class GamesLoader : MonoBehaviour
         
         quizMenu.enabled = false;
         Time.timeScale = 1f;
-        //AudioManager.Instance.PlayTransition(SoundNames.RelaxedSpaceMusic, transitionTime);
+        AudioManager.Instance.PlayTransition(MusicNames.Blues, transitionTime);
         StartCoroutine(FadeScene(SceneNames.MathQuizScene));
 
     }
@@ -50,7 +50,7 @@ public class GamesLoader : MonoBehaviour
 
         gamesMenu.enabled = false;
         Time.timeScale = 1f;
-        AudioManager.Instance.PlayTransition(SoundNames.RelaxedSpaceMusic, transitionTime);
+        AudioManager.Instance.PlayTransition(MusicNames.RelaxedSpaceMusic, transitionTime);
         StartCoroutine(FadeScene(SceneNames.SpaceGameScene));
     }
     public void No()
@@ -61,7 +61,6 @@ public class GamesLoader : MonoBehaviour
 
         //TODO
         //Move player away from the collision area
-        //disable moving character on button clicks
     }
 
     public IEnumerator FadeScene(string sceneName)

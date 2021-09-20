@@ -37,6 +37,7 @@ public class SpaceGame : MonoBehaviour, IGame
     private Transform victoryCanvas;
 
     [Header("Sounds")]
+    private Sound[] music;
     private Sound[] sounds;
     [SerializeField]
     private Sound Background;
@@ -57,12 +58,20 @@ public class SpaceGame : MonoBehaviour, IGame
     {
         eventSystem = EventSystem.current;
 
-        sounds = new Sound[] { Background, soundGameOver, soundDissolve, soundRespawning, soundWrong, soundVictory };
+        music = new Sound[] { Background };
+        foreach (var m in music)
+        {
+            m.source = gameObject.AddComponent<AudioSource>();
+            m.source.clip = m.audioClip;
+            m.source.volume = PlayerPrefs.GetFloat(PlayerPref.MusicVolume);
+            m.source.pitch = m.pitch;
+        }
+        sounds = new Sound[] { soundGameOver, soundDissolve, soundRespawning, soundWrong, soundVictory };
         foreach (var s in sounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.audioClip;
-            s.source.volume = s.volume;
+            s.source.volume = PlayerPrefs.GetFloat(PlayerPref.SoundVolume);
             s.source.pitch = s.pitch;
         }
         if (gameOverCanvas) gameOverCanvas.gameObject.SetActive(false);
@@ -79,9 +88,9 @@ public class SpaceGame : MonoBehaviour, IGame
         yield return new WaitForSecondsRealtime(delay);
         if (gameOverCanvas)
         {
-            PlayerPrefs.GetFloat(PlayerPref.volumeScale);
+            PlayerPrefs.GetFloat(PlayerPref.SoundVolume);
             gameOverCanvas.gameObject.SetActive(true);
-            if (soundGameOver != null) soundGameOver.source.PlayOneShot(soundGameOver.audioClip, PlayerPrefs.GetFloat(PlayerPref.volumeScale));
+            AudioManager.Instance.PlaySoundOneTime(SoundNames.GameOverVoice);
         }
     }
     public IEnumerator Victory(float delay)
@@ -95,8 +104,9 @@ public class SpaceGame : MonoBehaviour, IGame
                 victoryCanvas.Find("BG/CompletePanel/ScoreText/SoreNumbers").GetComponent<Text>().text = score.ToString();
 
             PlayerData.sharedInstance.AddExtraPoints(score);
+            AudioManager.Instance.PlaySoundOneTime(SoundNames.Victory);
 
-            if (soundVictory != null) soundVictory.source.PlayOneShot(soundVictory.audioClip, PlayerPrefs.GetFloat(PlayerPref.volumeScale));
+            //  if (soundVictory != null) soundVictory.source.PlayOneShot(soundVictory.audioClip, PlayerPrefs.GetFloat(PlayerPref.SoundVolume));
 
         }
     }
@@ -113,6 +123,8 @@ public class SpaceGame : MonoBehaviour, IGame
 
     public void LandedOnWrongPlanet()
     {
+        AudioManager.Instance.PlaySoundOneTime(SoundNames.Wrong);
+
         lives -= 1;
         UpdateScore();
     }
@@ -140,9 +152,9 @@ public class SpaceGame : MonoBehaviour, IGame
     }
 
     void PlayRespawningSound()
-    { 
-        if (soundRespawning != null) soundRespawning.source.PlayOneShot(soundRespawning.audioClip, PlayerPrefs.GetFloat(PlayerPref.volumeScale));
-        
+    {
+        if (soundRespawning != null) soundRespawning.source.PlayOneShot(soundRespawning.audioClip, PlayerPrefs.GetFloat(PlayerPref.SoundVolume));
+
     }
     public void Restart()
     {

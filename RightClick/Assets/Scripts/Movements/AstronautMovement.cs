@@ -14,7 +14,7 @@ public class AstronautMovement : MonoBehaviour
     private Material dissolve;
     [SerializeField]
     private Transform startingPoint;
-    private bool canMove;
+    private bool canMove = false;
     private Vector3 directionVector = Vector3.zero;
     private static float currentDissolve;
 
@@ -35,7 +35,7 @@ public class AstronautMovement : MonoBehaviour
     void Update()
     {
         //var quaternionRotation = Quaternion.LookRotation(Vector3.forward, directionVector);
-        if (Input.GetButtonDown(InputKeys.Fire))
+        if (Input.GetButtonDown(InputKeys.Fire) && canMove)
         {
             if (EventSystem.current.IsPointerOverGameObject() != true)
             {
@@ -45,6 +45,8 @@ public class AstronautMovement : MonoBehaviour
             }
 
         }
+        transform.rotation = Quaternion.Euler(0f, 0f, transform.rotation.eulerAngles.z);
+
     }
 
     public IEnumerator FadeAway()
@@ -69,10 +71,9 @@ public class AstronautMovement : MonoBehaviour
 
         yield return new WaitForSecondsRealtime(2f);
 
-        Quaternion orientation = Quaternion.Euler(0, 0, 0);
-        gameObject.transform.SetPositionAndRotation(startingPoint.position, orientation);
-        transform.up = startingPoint.up;
-      var delay = 0.2f;
+        // Quaternion orientation =  Quaternion.LookRotation(Vector3.forward, Vector3.up);
+        transform.position = startingPoint.position;
+        var delay = 0.2f;
         while (dissolve.GetFloat("_Fade") < 1f)
         {
             print("currentDissolve: " + currentDissolve);
@@ -86,6 +87,10 @@ public class AstronautMovement : MonoBehaviour
     {
         StartCoroutine(FadeAway());
         game.Died();
+    }
+    public void StartGame()
+    {
+        canMove = true;
     }
 }
 public struct InputKeys

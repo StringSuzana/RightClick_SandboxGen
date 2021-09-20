@@ -6,10 +6,11 @@ public class AudioUIManager : MonoBehaviour
 {
     public void PLayHoverSound()
     {
-        AudioManager.Instance.PlayOneTime(SoundNames.ButtonHover);
+        AudioManager.Instance.PlaySoundOneTime(SoundNames.ButtonHover);
     }
     public void PLayClickSound()
     {
-        AudioManager.Instance.PlayOneTime(SoundNames.Click);
+        AudioManager.Instance.PlaySoundOneTime(SoundNames.Click);
     }
+
 }

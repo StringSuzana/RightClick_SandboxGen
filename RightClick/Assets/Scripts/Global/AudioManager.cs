@@ -7,17 +7,14 @@ using TriviaQuizGame;
 
 public class AudioManager : MonoBehaviour
 {
-    internal float soundPlayTime = 0;
     internal bool isPaused = false;
-
-    [Tooltip("The index of the current value of the sound")]
-    internal float currentState = 1;
 
     [Tooltip("The volume when this sound button is toggled on")]
     public float volumeOn = 1;
     [Tooltip("The volume when this sound button is toggled off")]
     public float volumeOff = 0;
 
+    public Sound[] music;
     public Sound[] sounds;
     public static AudioManager Instance;
     void Awake()
@@ -32,20 +29,29 @@ public class AudioManager : MonoBehaviour
         }
         #endregion
 
-        DontDestroyOnLoad(gameObject);
+
+        foreach (var m in music)
+        {
+            m.source = gameObject.AddComponent<AudioSource>();
+            m.source.clip = m.audioClip;
+            m.source.volume = PlayerPrefs.GetFloat(PlayerPref.MusicVolume);
+            m.source.pitch = m.pitch;
+        }
         foreach (var s in sounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.audioClip;
-            s.source.volume = s.volume;
+            s.source.volume = PlayerPrefs.GetFloat(PlayerPref.SoundVolume);
             s.source.pitch = s.pitch;
         }
+
+        DontDestroyOnLoad(gameObject);
     }
     private void Start()
     {
-        Play(SoundNames.Bacground);
+        PlayMusic(MusicNames.Bacground);
     }
-    public void PlayOneTime(string name)
+    public void PlaySoundOneTime(string name)
     {
         Debug.Log(name);
         Sound s = Array.Find(sounds, sound => sound.name == name);
@@ -54,63 +60,52 @@ public class AudioManager : MonoBehaviour
             Debug.Log("AudioClip not found => maybe the name in inspector is wrong or it is not there");
             return;
         }
+        s.source.volume = PlayerPrefs.GetFloat(PlayerPref.SoundVolume);
         s.source.PlayOneShot(s.audioClip);
     }
-    public void PlayOneTime(string name, float volumeScale)
+  
+    public void PlayMusic(string name)
     {
-        Debug.Log(name);
-        Sound s = Array.Find(sounds, sound => sound.name == name);
-        if (s == null)
-        {
-            Debug.Log("AudioClip not found => maybe the name in inspector is wrong or it is not there");
-            return;
-        }
-        s.source.PlayOneShot(s.audioClip, volumeScale);
-    }
-
-    public void Play(string name)
-    {
-        Sound s = Array.Find(sounds, sound => sound.name == name);
-        if (s == null)
+        Sound m = Array.Find(music, song => song.name == name);
+        if (m == null)
         {
             Debug.Log("Sound not found => maybe the name in inspector is wrong or it is not there");
             return;
         }
-        s.source.Play();
+        m.source.volume = PlayerPrefs.GetFloat(PlayerPref.MusicVolume);
+        m.source.Play();
     }
 
-    public void PlayTransition(string newSoundName, float transitionTime)
+    public void PlayTransition(string songName, float transitionTime)
     {
-        StartCoroutine(CrossFadeAudio(newSoundName, transitionTime));
+        StartCoroutine(CrossFadeAudio(songName, transitionTime));
     }
 
-    public IEnumerator CrossFadeAudio(string newSoundName, float transitionTime)
+    public IEnumerator CrossFadeAudio(string songName, float transitionTime)
     {
-        Sound sound = Array.Find(sounds, sound => sound.name == newSoundName);
-        if (sound == null)
+        Sound song = Array.Find(music, m => m.name == songName);
+        if (song == null)
         {
-            Debug.Log("AudioClip not found => maybe the name in inspector is wrong or it is not there=> " + newSoundName);
+            Debug.Log("AudioClip not found => maybe the name in inspector is wrong or it is not there=> " + songName);
             yield return null;
         }
         float timeOut = 1;
         while (timeOut > 0)
         {
-            foreach (var s in sounds)
+            foreach (var m in music)
             {
-                if (s?.source.isPlaying == true)
+                if (m?.source.isPlaying == true)
                 {
-                    s.source.volume = timeOut;
-                    Debug.Log(s?.source.name + " is playing " + s?.source.clip.name);
+                    m.source.volume = timeOut;                   
                     if (timeOut - transitionTime <= 0 )
                     {
-                        Debug.Log("Stopped playing: " + s.source.name);
-                        s.source.Stop();
-                        
+                        Debug.Log("Stopped playing: " + m.source.name);
+                        m.source.Stop();
                     }
                 }
             }
-            sound.source.volume = 1 - timeOut;
-            sound.source.Play();
+            song.source.volume = 1 - timeOut;
+            song.source.Play();
 
             yield return new WaitForSeconds(transitionTime);
             timeOut -= transitionTime;
@@ -128,13 +123,21 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void SetNewVolume(float newVolume)
+    public void SetMusicVolume(float value)
+    {       
+        PlayerPrefs.SetFloat(PlayerPref.SoundVolume, value);
+        foreach (var m in music)
+        {
+            m.source.volume = value;
+        }
+    }
+
+    public void SetSoundsVolume(float value)
     {
-        currentState = newVolume;
-        PlayerPrefs.SetFloat(PlayerPref.volumeScale, currentState);
+        PlayerPrefs.SetFloat(PlayerPref.SoundVolume, value);
         foreach (var s in sounds)
         {
-            s.source.volume = newVolume;
+            s.source.volume = value;
         }
     }
 }
