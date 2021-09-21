@@ -23,7 +23,7 @@ namespace TriviaQuizGame
         internal AudioSource firstMusicObject;
         internal AudioSource secondMusicObject;
 
-             void Awake()
+        void Awake()
         {
             //Find all the music objects in the scene
             musicObjects = GameObject.FindGameObjectsWithTag(musicTag);
@@ -77,13 +77,6 @@ namespace TriviaQuizGame
             Destroy(firstMusicObject.gameObject);
         }
 
-        /// <summary>
-        /// Start is only called once in the lifetime of the behaviour.
-        /// The difference between Awake and Start is that Start is only called if the script instance is enabled.
-        /// This allows you to delay any initialization code, until it is really needed.
-        /// Awake is always called before any Start functions.
-        /// This allows you to order initialization of scripts
-        /// </summary>
         void Start()
         {
             //Don't destroy this object when loading a new scene

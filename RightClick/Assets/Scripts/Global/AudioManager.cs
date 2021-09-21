@@ -34,7 +34,7 @@ public class AudioManager : MonoBehaviour
         {
             m.source = gameObject.AddComponent<AudioSource>();
             m.source.clip = m.audioClip;
-            m.source.volume = PlayerPrefs.GetFloat(PlayerPref.MusicVolume);
+            m.source.volume = PlayerPrefs.GetFloat(PlayerPrefNames.MusicVolume);
             m.source.pitch = m.pitch;
             m.source.loop = true;
         }
@@ -42,7 +42,7 @@ public class AudioManager : MonoBehaviour
         {
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.audioClip;
-            s.source.volume = PlayerPrefs.GetFloat(PlayerPref.SoundVolume);
+            s.source.volume = PlayerPrefs.GetFloat(PlayerPrefNames.SoundVolume);
             s.source.pitch = s.pitch;
         }
 
@@ -60,7 +60,7 @@ public class AudioManager : MonoBehaviour
             Debug.Log("AudioClip not found => maybe the name in inspector is wrong or it is not there");
             return;
         }
-        s.source.volume = PlayerPrefs.GetFloat(PlayerPref.SoundVolume);
+        s.source.volume = PlayerPrefs.GetFloat(PlayerPrefNames.SoundVolume);
         s.source.PlayOneShot(s.audioClip);
     }
 
@@ -72,7 +72,7 @@ public class AudioManager : MonoBehaviour
             Debug.Log("Sound not found => maybe the name in inspector is wrong or it is not there");
             return;
         }
-        m.source.volume = PlayerPrefs.GetFloat(PlayerPref.MusicVolume);
+        m.source.volume = PlayerPrefs.GetFloat(PlayerPrefNames.MusicVolume);
         m.source.Play();
     }
 
@@ -104,13 +104,13 @@ public class AudioManager : MonoBehaviour
                     }
                 }
             }
-            if ((1 - timeOut) <= PlayerPrefs.GetFloat(PlayerPref.MusicVolume))
+            if ((1 - timeOut) <= PlayerPrefs.GetFloat(PlayerPrefNames.MusicVolume))
             {
                 song.source.volume = (1 - timeOut);
             }
             else
             {
-                song.source.volume = PlayerPrefs.GetFloat(PlayerPref.MusicVolume);
+                song.source.volume = PlayerPrefs.GetFloat(PlayerPrefNames.MusicVolume);
 
             }
             if (!song.source.isPlaying)
@@ -136,7 +136,7 @@ public class AudioManager : MonoBehaviour
 
     public void SetMusicVolume(float value)
     {
-        PlayerPrefs.SetFloat(PlayerPref.MusicVolume, value);
+        PlayerPrefs.SetFloat(PlayerPrefNames.MusicVolume, value);
         foreach (var m in music)
         {
             m.source.volume = value;
@@ -145,7 +145,7 @@ public class AudioManager : MonoBehaviour
 
     public void SetSoundsVolume(float value)
     {
-        PlayerPrefs.SetFloat(PlayerPref.SoundVolume, value);
+        PlayerPrefs.SetFloat(PlayerPrefNames.SoundVolume, value);
         foreach (var s in sounds)
         {
             s.source.volume = value;

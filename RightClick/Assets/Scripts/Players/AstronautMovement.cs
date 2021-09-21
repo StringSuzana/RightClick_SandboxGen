@@ -95,7 +95,4 @@ public class AstronautMovement : MonoBehaviour
         canMove = true;
     }
 }
-public struct InputKeys
-{
-    public static string Fire = "Fire1";
-}
+

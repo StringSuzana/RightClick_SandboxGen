@@ -28,8 +28,4 @@ public class QuitManager : MonoBehaviour
        // UnityEditor.EditorApplication.isPlaying = false;
     }
 }
-public struct CanvasNames
-{
-    public static string exitMenu = "ExitMenu";
-    public static string quizMenu = "QuizMenu";
-}
+
