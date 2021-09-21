@@ -54,7 +54,6 @@ public class AudioManager : MonoBehaviour
     }
     public void PlaySoundOneTime(string name)
     {
-        Debug.Log(name);
         Sound s = Array.Find(sounds, sound => sound.name == name);
         if (s == null)
         {

@@ -11,7 +11,6 @@ public interface Interactable
 public class PlanetNPC : MonoBehaviour, Interactable
 {
     public float radius;
-    //public Transform planet;
     public Transform player;
     [SerializeField]
     private Dialogue dialogue;
@@ -39,8 +38,9 @@ public class PlanetNPC : MonoBehaviour, Interactable
     void Update()
     {
         float distance = Vector3.Distance(player.position, transform.position);
-        float playerYSize = player.GetComponent<SpriteRenderer>().size.y;
+        float playerYSize = player.GetComponent<SpriteRenderer>().bounds.size.magnitude;
         float spriteBottomDistance = distance - playerYSize;
+
         if (!this.hasBeenOpened && spriteBottomDistance <= radius)
         {
             if (DialogManager.Instance.isOpened)

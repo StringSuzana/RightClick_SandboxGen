@@ -147,7 +147,7 @@ public class SpaceGame : MonoBehaviour, IGame
     {
         //Play sound
         PlayRespawningSound();
-        StopAllCoroutines();
+        //StopAllCoroutines();
         StartCoroutine(astronaut.FadeIn());
     }
 

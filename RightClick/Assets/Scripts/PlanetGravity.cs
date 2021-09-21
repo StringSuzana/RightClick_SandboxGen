@@ -25,6 +25,7 @@ public class PlanetGravity : MonoBehaviour
             float distFromCentreOfPlanet = (Vector3.Distance(foreignBody.transform.position, transform.position));
             if ((distFromCentreOfPlanet - planetRadius) < orbitDistance)
             {
+              
                 foreignBody.attachedRigidbody.drag = 10f * (1 / distFromCentreOfPlanet) * Time.deltaTime;
             }
             else
@@ -35,16 +36,7 @@ public class PlanetGravity : MonoBehaviour
             Vector3 gravity = (transform.position - foreignBody.transform.position) * gravityScale;
             Vector3 gravityInfluence = gravity / Mathf.Pow(distFromCentreOfPlanet, 2);
 
-            if (transform.name == "MARS")
-            {
-                Debug.DrawLine(foreignBody.transform.position, gravity, Color.red, 0.3f); ;
-
-            }
-            else
-            {
-                Debug.DrawLine(foreignBody.transform.position, gravity, Color.green, 0.3f); ;
-
-            }
+            Debug.DrawLine(foreignBody.transform.position, gravity, Color.green, 0.3f); ;
 
             //Fake planets gravity
             foreignBody.gameObject.GetComponent<Rigidbody2D>().AddForce(gravityInfluence);

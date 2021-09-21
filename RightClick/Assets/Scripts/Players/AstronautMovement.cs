@@ -68,11 +68,13 @@ public class AstronautMovement : MonoBehaviour
         {
             yield return new WaitForSecondsRealtime(0.1f);
         }
-
+        //wait for countdown
         yield return new WaitForSecondsRealtime(2f);
 
-        // Quaternion orientation =  Quaternion.LookRotation(Vector3.forward, Vector3.up);
-        transform.position = startingPoint.position;
+        // Go back to the starting point
+         Quaternion orientation =  Quaternion.LookRotation(Vector3.forward, Vector3.up);
+       // transform.position = startingPoint.position;
+        transform.SetPositionAndRotation(startingPoint.position, orientation);
         var delay = 0.2f;
         while (dissolve.GetFloat("_Fade") < 1f)
         {
