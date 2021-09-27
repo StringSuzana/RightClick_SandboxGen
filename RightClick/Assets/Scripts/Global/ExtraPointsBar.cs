@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class ExtraPointsBar : MonoBehaviour
 {
+    [SerializeField]
     private Slider imageExtraPoints;
 
     [Tooltip("Current number of points.")]
@@ -15,7 +16,7 @@ public class ExtraPointsBar : MonoBehaviour
 
     void Start()
     {
-        imageExtraPoints = GameObject.FindGameObjectWithTag("ExtraPointsBar").GetComponent<Slider>();
+        //imageExtraPoints = GameObject.FindGameObjectWithTag("ExtraPointsBar").GetComponent<Slider>();
         PlayerData.sharedInstance.LoadStudentInfo();
         Display();
     }

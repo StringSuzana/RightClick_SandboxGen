@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class QuitManager : MonoBehaviour
 {
+    [SerializeField]
     private Canvas ExitMenu;
     void Start()
     {
-        ExitMenu = GameObject.FindGameObjectWithTag(CanvasNames.exitMenu).GetComponent<Canvas>();
+       // ExitMenu = GameObject.FindGameObjectWithTag(CanvasNames.exitMenu).GetComponent<Canvas>();
         ExitMenu.enabled = false;
     }
     void Update()
